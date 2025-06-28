@@ -1,50 +1,55 @@
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
+
 export default function OfferStack() {
   const features = [
     {
-      title: "24/7 AI Scheduler",
-      desc: "Books leads, sends reminders, and handles follow-ups — no human needed.",
+      title: "24/7 Scheduler System",
+      desc: "Books qualified leads, sends reminders, and manages follow-ups — autonomously.",
     },
     {
       title: "Lead Qualification Engine",
-      desc: "Filters high-intent leads and routes them automatically based on behavior.",
+      desc: "Filters and routes prospects based on behavior, intent, and source — in real time.",
     },
     {
       title: "Smart Follow-Up Sequences",
-      desc: "Prebuilt automations that recover ghosted leads and close more deals.",
+      desc: "Deploys strategic messaging to re-engage ghosted leads and close deals faster.",
     },
     {
-      title: "Custom Sales Dashboard",
-      desc: "Track lead flow, deal stages, and bottlenecks in real time.",
+      title: "Custom Sales Intelligence",
+      desc: "Monitors lead flow, deal stages, and bottlenecks with live performance data.",
     },
     {
       title: "Re-Engagement Protocols",
-      desc: "Reactivates cold leads automatically with strategic touchpoints.",
+      desc: "Revives cold traffic with automated, multi-channel touchpoint strategies.",
     },
   ];
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-black to-[#0d1b2a] text-white" id="offer">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">
-          You’re Not Just Getting Automations —
+    <section
+      className="py-24 px-6 bg-gradient-to-b from-black to-[#0b1321] text-white"
+      id="offer-stack"
+    >
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight tracking-tight">
+          Not Just Automations —
           <br className="hidden md:block" />
-          You’re Getting <span className="text-accent">Infrastructure</span>.
+          <span className="text-accent drop-shadow-[0_0_8px_#00f7bf99]">Operational Infrastructure</span>
         </h2>
-        <p className="text-gray-400 max-w-xl mx-auto mb-12 text-sm">
-          Every system is built to operate like a trained team member — running silently,
-          intelligently, and 24/7. This is your unfair advantage.
+        <p className="text-gray-400 max-w-2xl mx-auto mb-16 text-base md:text-lg">
+          These aren't basic workflows. They're engineered frameworks that run your backend like
+          a high-performance team — without the overhead.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6 text-left">
+        <div className="grid md:grid-cols-2 gap-8 text-left">
           {features.map((item, i) => (
             <div
               key={i}
-              className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md hover:border-accent transition-all"
+              className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md hover:border-accent transition-all shadow-lg hover:shadow-accent/30"
             >
               <div className="flex items-start space-x-4">
-                <div className="text-accent text-xl font-bold">✅</div>
+                <CheckCircleIcon className="w-6 h-6 text-accent shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                  <h3 className="text-lg font-semibold mb-1 text-white">{item.title}</h3>
                   <p className="text-sm text-gray-300">{item.desc}</p>
                 </div>
               </div>
@@ -52,8 +57,8 @@ export default function OfferStack() {
           ))}
         </div>
 
-        <p className="mt-16 text-xs text-gray-500 italic">
-          Estimated internal value: $20,000+ in custom development hours.
+        <p className="mt-20 text-xs text-gray-500 italic">
+          Estimated internal value: $20,000+ in custom development hours — now delivered turnkey.
         </p>
       </div>
     </section>
