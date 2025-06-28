@@ -17,7 +17,7 @@ export default function Hero() {
         </p>
 
         <a
-  href="https://calendly.com/yourname/system"
+  href="/install"
   target="_blank"
   rel="noopener noreferrer"
   className="mt-6 inline-block bg-accent text-black px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-accent transition hover:scale-105"
