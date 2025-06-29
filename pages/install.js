@@ -1,5 +1,6 @@
 // pages/install.js
 import { useState } from "react";
+import Head from "next/head";
 import Navbar from "../components/Navbar";
 
 export default function InstallPage() {
@@ -13,112 +14,90 @@ export default function InstallPage() {
 
   return (
     <>
+      <Head>
+        <title>Install | NoSleep Systems</title>
+      </Head>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-black to-neutral-900 text-white flex items-center justify-center px-4 py-28">
-        <div className="backdrop-blur-lg bg-white/5 border border-white/10 p-10 md:p-12 rounded-3xl shadow-[0_0_100px_rgba(255,255,255,0.05)] w-full max-w-3xl animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight leading-tight">
+
+      <div className="min-h-screen bg-gradient-to-br from-black to-neutral-900 text-white flex items-center justify-center px-6 py-32">
+        <div className="w-full max-w-3xl bg-white/5 backdrop-blur-xl p-10 md:p-12 border border-white/10 rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.3)] animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
             System Install Application
           </h1>
-          <p className="text-neutral-300 text-base md:text-lg mb-10 max-w-2xl">
-            This isn’t a contact form — it’s your gateway to a backend that scales while you sleep.
-            Fill out the form below to get qualified.
+          <p className="text-neutral-400 mb-10 text-sm md:text-base max-w-xl">
+            This isn’t a contact form — it’s your gateway to a backend that works while you sleep.
+            Fill this out to qualify.
           </p>
 
           <form
             action="https://hooks.zapier.com/hooks/catch/23501833/ub5wicj/"
             method="POST"
-            className="space-y-10"
+            className="space-y-8"
           >
-            {/* Full Name */}
-            <div className="relative">
-              <input
-                name="name"
-                required
-                className="peer w-full bg-neutral-800 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent transition placeholder-transparent"
-                placeholder="Full Name"
-              />
-              <label className="absolute left-4 top-2 text-sm text-neutral-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-neutral-400">
-                Full Name
-              </label>
-            </div>
+            {[{
+              name: "name",
+              type: "text",
+              label: "Full Name",
+              placeholder: "Full Name"
+            }, {
+              name: "email",
+              type: "email",
+              label: "Email Address",
+              placeholder: "Email Address"
+            }, {
+              name: "website",
+              type: "url",
+              label: "Business Website",
+              placeholder: "Business Website"
+            }].map(({ name, type, label, placeholder }) => (
+              <div className="relative" key={name}>
+                <input
+                  type={type}
+                  name={name}
+                  required
+                  className="peer w-full bg-neutral-800 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent transition placeholder-transparent"
+                  placeholder={placeholder}
+                />
+                <label className="absolute left-4 top-2 text-sm text-neutral-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-neutral-400">
+                  {label}
+                </label>
+              </div>
+            ))}
 
-            {/* Email */}
-            <div className="relative">
-              <input
-                type="email"
-                name="email"
-                required
-                className="peer w-full bg-neutral-800 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent transition placeholder-transparent"
-                placeholder="Email Address"
-              />
-              <label className="absolute left-4 top-2 text-sm text-neutral-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-neutral-400">
-                Email Address
-              </label>
-            </div>
+            {[{
+              label: "Company Size",
+              value: companySize,
+              setValue: setCompanySize,
+              options: companySizeLabels,
+              name: "companySize"
+            }, {
+              label: "Annual Revenue",
+              value: revenue,
+              setValue: setRevenue,
+              options: revenueLabels,
+              name: "revenue"
+            }, {
+              label: "Budget Range",
+              value: budget,
+              setValue: setBudget,
+              options: budgetLabels,
+              name: "budget"
+            }].map(({ label, value, setValue, options, name }) => (
+              <div key={label}>
+                <label className="block text-sm font-medium text-neutral-400 mb-2">{label}</label>
+                <input
+                  type="range"
+                  min="1"
+                  max="4"
+                  value={value}
+                  onChange={(e) => setValue(Number(e.target.value))}
+                  className="w-full accent-accent"
+                />
+                <p className="text-sm text-neutral-300 mt-2 font-medium">{options[value - 1]}</p>
+                <input type="hidden" name={`${name}Text`} value={options[value - 1]} />
+              </div>
+            ))}
 
-            {/* Website */}
-            <div className="relative">
-              <input
-                type="url"
-                name="website"
-                required
-                className="peer w-full bg-neutral-800 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent transition placeholder-transparent"
-                placeholder="Business Website"
-              />
-              <label className="absolute left-4 top-2 text-sm text-neutral-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-neutral-400">
-                Business Website
-              </label>
-            </div>
-
-            {/* Company Size Slider */}
-            <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-2">Company Size</label>
-              <input
-                type="range"
-                name="companySize"
-                min="1"
-                max="4"
-                value={companySize}
-                onChange={(e) => setCompanySize(Number(e.target.value))}
-                className="w-full accent-accent"
-              />
-              <p className="text-sm text-neutral-200 mt-2 font-medium">{companySizeLabels[companySize - 1]}</p>
-              <input type="hidden" name="companySizeText" value={companySizeLabels[companySize - 1]} />
-            </div>
-
-            {/* Revenue Slider */}
-            <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-2">Annual Revenue</label>
-              <input
-                type="range"
-                name="revenue"
-                min="1"
-                max="4"
-                value={revenue}
-                onChange={(e) => setRevenue(Number(e.target.value))}
-                className="w-full accent-accent"
-              />
-              <p className="text-sm text-neutral-200 mt-2 font-medium">{revenueLabels[revenue - 1]}</p>
-              <input type="hidden" name="revenueText" value={revenueLabels[revenue - 1]} />
-            </div>
-
-            {/* Budget Slider */}
-            <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-2">Budget Range</label>
-              <input
-                type="range"
-                name="budget"
-                min="1"
-                max="4"
-                value={budget}
-                onChange={(e) => setBudget(Number(e.target.value))}
-                className="w-full accent-accent"
-              />
-              <p className="text-sm text-neutral-200 mt-2 font-medium">{budgetLabels[budget - 1]}</p>
-              <input type="hidden" name="budgetText" value={budgetLabels[budget - 1]} />
-            </div>
-
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-accent text-black font-bold py-4 rounded-xl hover:brightness-110 hover:scale-[1.02] transition-all duration-300 shadow-xl"

@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Navbar from '../components/Navbar';
+import Head from "next/head";
+import Navbar from "../components/Navbar";
 
 export default function About() {
   return (
@@ -12,8 +12,9 @@ export default function About() {
 
       <section className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-black text-white px-6 py-32 md:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/grid-overlay.png')] opacity-5 bg-repeat pointer-events-none z-0" />
-        <div className="max-w-6xl mx-auto z-10 relative space-y-12">
+        <div className="max-w-6xl mx-auto z-10 relative space-y-16">
 
+          {/* Header Block */}
           <div>
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
               We don’t build websites. <br />
@@ -24,10 +25,11 @@ export default function About() {
             </p>
           </div>
 
+          {/* Feature Cards */}
           <div className="grid md:grid-cols-2 gap-10">
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <h2 className="text-xl font-semibold text-white mb-4">What We Deploy</h2>
-              <ul className="text-slate-300 space-y-3 text-sm">
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm shadow-md hover:shadow-accent transition-all duration-300">
+              <h2 className="text-xl font-bold text-white mb-4">What We Deploy</h2>
+              <ul className="text-slate-300 space-y-3 text-sm leading-relaxed">
                 <li>✔ Conversion Pages that sell on autopilot</li>
                 <li>✔ Lead Capture Funnels that qualify and close</li>
                 <li>✔ AI Agents that handle repetitive ops</li>
@@ -36,9 +38,9 @@ export default function About() {
               </ul>
             </div>
 
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-4">Why We're Different</h3>
-              <ul className="text-slate-300 space-y-3 text-sm">
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm shadow-md hover:shadow-accent transition-all duration-300">
+              <h3 className="text-xl font-bold text-white mb-4">Why We're Different</h3>
+              <ul className="text-slate-300 space-y-3 text-sm leading-relaxed">
                 <li>– Built with conversion psychology frameworks</li>
                 <li>– Delivered like software, not slow agencies</li>
                 <li>– Fully automated — not just pretty design</li>
@@ -47,10 +49,12 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-20 text-xl text-slate-300 font-light italic border-t border-white/10 pt-10 max-w-3xl">
+          {/* Quote Block */}
+          <div className="mt-16 text-xl text-slate-300 font-light italic border-t border-white/10 pt-10 max-w-3xl">
             "If your business still runs on manual effort, you’re already behind. We install leverage so you can scale without burnout."
           </div>
 
+          {/* CTA */}
           <div className="mt-10">
             <a
               href="/install"
