@@ -2,7 +2,7 @@
 
 export default function VisualMockup() {
   return (
-    <section className="w-full bg-[#0F0F0F] text-white py-20 px-6">
+    <section id="visual-mockup" className="w-full bg-[#0F0F0F] text-white py-20 px-6">
       <div className="max-w-6xl mx-auto space-y-12">
 
         {/* Header */}
