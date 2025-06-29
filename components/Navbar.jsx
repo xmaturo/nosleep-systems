@@ -1,54 +1,72 @@
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const handleNav = (hash) => {
+    setIsOpen(false);
+    if (router.pathname === "/") {
+      if (hash === "#top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push(`/${hash === "#top" ? "" : hash}`);
+    }
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 border-b border-gray-800">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/70 border-b border-white/10 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
-          <h1 className="text-xl font-bold tracking-wide">
-            <span className="text-accent hover:drop-shadow-[0_0_6px_#00f7bf] transition duration-200">
-              NoSleep
-            </span>
-            <span className="text-white hover:drop-shadow-[0_0_4px_#ffffff] transition duration-200">
-              Systems
-            </span>
-          </h1>
-        </div>
+        <Link href="/" onClick={() => setIsOpen(false)}>
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <h1 className="text-xl font-bold tracking-wide">
+              <span className="text-accent hover:drop-shadow-[0_0_6px_#00f7bf] transition duration-200">
+                NoSleep
+              </span>
+              <span className="text-white font-bold hover:drop-shadow-[0_0_4px_#ffffff] transition duration-200">
+                Systems
+              </span>
+            </h1>
+          </div>
+        </Link>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white focus:outline-none text-2xl"
+            className="text-white text-2xl focus:outline-none"
           >
             ☰
           </button>
         </div>
 
-        {/* Desktop Links */}
-        <ul className="hidden md:flex items-center space-x-6 text-sm text-white">
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex items-center space-x-6 text-sm font-medium text-white">
           <li>
-            <a href="#get-started" className="hover:text-accent transition-colors">
+            <button onClick={() => handleNav("#top")} className="hover:text-accent transition-colors">
               Get Started
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#offer-stack" className="hover:text-accent transition-colors">
+            <button onClick={() => handleNav("#offer-stack")} className="hover:text-accent transition-colors">
               Offer Stack
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#visual-mockup" className="hover:text-accent transition-colors">
+            <button onClick={() => handleNav("#visual-mockup")} className="hover:text-accent transition-colors">
               Live Demo
-            </a>
+            </button>
           </li>
           <li>
-            <Link href="/about" className="text-gray-300 hover:text-white transition">
+            <Link href="/about" className="hover:text-accent transition-colors">
               About
             </Link>
           </li>
@@ -57,25 +75,25 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden px-4 pb-4 bg-black bg-opacity-95">
-          <ul className="flex flex-col space-y-3 text-white text-sm">
+        <div className="md:hidden px-4 pb-4 bg-black/90 backdrop-blur-md border-t border-white/10">
+          <ul className="flex flex-col space-y-3 text-sm text-white">
             <li>
-              <a href="#get-started" className="hover:text-accent transition-colors">
+              <button onClick={() => handleNav("#top")} className="hover:text-accent transition">
                 Get Started
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#offer-stack" className="hover:text-accent transition-colors">
+              <button onClick={() => handleNav("#offer-stack")} className="hover:text-accent transition">
                 Offer Stack
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#visual-mockup" className="hover:text-accent transition-colors">
+              <button onClick={() => handleNav("#visual-mockup")} className="hover:text-accent transition">
                 Live Demo
-              </a>
+              </button>
             </li>
             <li>
-              <Link href="/about" className="hover:text-accent transition-colors">
+              <Link href="/about" className="hover:text-accent transition">
                 About
               </Link>
             </li>
