@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function CTA() {
   return (
     <section
@@ -13,10 +15,15 @@ export default function CTA() {
         </p>
 
         <div className="mt-6">
-          <button className="bg-accent text-black font-semibold py-3 px-6 rounded-full text-sm transition hover:scale-105 hover:shadow-lg hover:bg-accent/90 focus:outline-none">
+          <Link
+            href="/install"
+            className="inline-block bg-accent text-black font-semibold py-3 px-6 rounded-full text-sm transition hover:scale-105 hover:shadow-lg hover:bg-accent/90"
+          >
             Install My System →
-          </button>
-          <p className="text-xs text-gray-500 mt-3">Launches in under 3 minutes. No fluff. Just fire.</p>
+          </Link>
+          <p className="text-xs text-gray-500 mt-3">
+            Launches in under 3 minutes. No fluff. Just fire.
+          </p>
         </div>
       </div>
     </section>
