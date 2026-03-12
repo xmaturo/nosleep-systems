@@ -20,7 +20,7 @@ export default function Lanes() {
           </p>
           <Link
             href="/projects"
-            className="inline-block font-mono text-[10px] uppercase tracking-[2px] text-gold px-5 py-2 border-[2.5px] border-gold hover:bg-gold hover:text-void transition-all duration-150"
+            className="inline-block font-mono text-[10px] uppercase tracking-[2px] text-gold px-5 py-2 border-[3px] border-gold hover:bg-gold hover:text-void transition-all duration-150"
           >
             Explore →
           </Link>
@@ -42,7 +42,7 @@ export default function Lanes() {
           </p>
           <Link
             href="/projects"
-            className="inline-block font-mono text-[10px] uppercase tracking-[2px] text-gold px-5 py-2 border-[2.5px] border-gold hover:bg-gold hover:text-void transition-all duration-150"
+            className="inline-block font-mono text-[10px] uppercase tracking-[2px] text-gold px-5 py-2 border-[3px] border-gold hover:bg-gold hover:text-void transition-all duration-150"
           >
             Explore →
           </Link>

@@ -12,10 +12,10 @@ export default function Hero() {
         </p>
 
         <h1 className="mb-6">
-          <span className="block font-display text-[48px] md:text-[72px] text-gold uppercase leading-[0.95] -rotate-[1deg]">
+          <span className="block font-display text-[48px] md:text-[72px] text-gold uppercase leading-[0.95] -rotate-[1.5deg]">
             I DESIGN
           </span>
-          <span className="block font-display text-[48px] md:text-[72px] text-cream uppercase leading-[0.95] rotate-[0.5deg]">
+          <span className="block font-display text-[48px] md:text-[72px] text-cream uppercase leading-[0.95] rotate-[0.8deg]">
             LEVERAGE.
           </span>
         </h1>

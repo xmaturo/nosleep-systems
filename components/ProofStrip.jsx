@@ -9,7 +9,7 @@ const proofs = [
 export default function ProofStrip() {
   return (
     <section className="px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-[3px]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-[3px]">
         {proofs.map((item, i) => (
           <div
             key={item.label}
