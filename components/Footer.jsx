@@ -1,21 +1,38 @@
+import Link from 'next/link';
+
+const socialLinks = [
+  { label: 'Email', href: 'mailto:omar@nosleepsystems.com' },
+  { label: 'GitHub', href: 'https://github.com' },
+  { label: 'LinkedIn', href: 'https://linkedin.com' },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] text-white py-12 border-t border-white/10">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-        
-        {/* Left: Logo + Tagline */}
-        <div className="text-center md:text-left">
-          <h2 className="text-xl font-bold">NoSleep<span className="text-accent">Systems</span></h2>
-          <p className="text-sm text-gray-500 mt-1">
-            AI-powered automation stacks. Built for growth. Running 24/7.
-          </p>
-        </div>
+    <footer className="relative border-t-[3px] border-ember overflow-hidden">
+      {/* Giant background text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <span className="font-display text-[120px] md:text-[180px] text-wine opacity-[0.06] uppercase whitespace-nowrap">
+          NOSLEEP
+        </span>
+      </div>
 
-        {/* Right: Links */}
-        <div className="flex space-x-6 text-sm text-gray-400">
-          <a href="#" className="hover:text-white transition">Privacy</a>
-          <a href="#" className="hover:text-white transition">Terms</a>
-          <a href="mailto:team@nosleepsystems.com" className="hover:text-white transition">Contact</a>
+      <div className="relative max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="font-mono text-[10px] text-cream/35">
+          No Sleep Systems · GTA, Canada · omar@nosleepsystems.com
+        </p>
+
+        <div className="flex items-center gap-3">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith('mailto') ? undefined : '_blank'}
+              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              className="font-mono text-[10px] text-gold px-3 py-1 border-[2px] border-wine rounded-[40px] hover:bg-gold hover:text-void transition-all duration-150"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
     </footer>
