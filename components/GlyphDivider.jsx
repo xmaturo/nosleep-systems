@@ -22,7 +22,7 @@ export default function GlyphDivider() {
         height="24"
         viewBox="0 0 24 24"
         className="animate-radiate text-gold"
-        style={{ animationDelay: '0.5s' }}
+        style={{ animationDelay: '0.4s' }}
       >
         <rect
           x="12"
@@ -42,7 +42,7 @@ export default function GlyphDivider() {
         height="24"
         viewBox="0 0 24 24"
         className="animate-radiate text-rust"
-        style={{ animationDelay: '1s' }}
+        style={{ animationDelay: '0.8s' }}
       >
         <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
         <circle cx="12" cy="12" r="4" fill="currentColor" />

@@ -1,9 +1,6 @@
 export default function MarqueeStrip() {
   const line1 = 'Open source → Zero vendor lock → Maximum leverage';
   const line2 = 'Theory → Architecture → Product → Compound output';
-  const separator = ' ◆ ';
-
-  const content = `${line1}${separator}${line2}${separator}${line1}${separator}${line2}${separator}`;
 
   return (
     <section className="border-y-[3px] border-wine overflow-hidden py-3">

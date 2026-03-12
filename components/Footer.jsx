@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const socialLinks = [
   { label: 'Email', href: 'mailto:omar@nosleepsystems.com' },
   { label: 'GitHub', href: 'https://github.com' },
@@ -11,7 +9,7 @@ export default function Footer() {
     <footer className="relative border-t-[3px] border-ember overflow-hidden">
       {/* Giant background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span className="font-display text-[120px] md:text-[180px] text-wine opacity-[0.06] uppercase whitespace-nowrap">
+        <span className="font-display text-[120px] md:text-[120px] text-wine opacity-[0.06] uppercase whitespace-nowrap">
           NOSLEEP
         </span>
       </div>
