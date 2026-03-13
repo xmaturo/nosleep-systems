@@ -1,12 +1,40 @@
 export const metadata = {
   title: 'Contractor OS',
   type: 'SYSTEM',
-  description: 'An AI-powered ERP system built for security camera installation contractors.',
-  impact: 'One contractor operates an entire business through this system — doing the work of 5 people.',
+  description: 'An AI-powered ERP system built for security camera installation contractors. One system replaces quoting, invoicing, scheduling, inventory, and client management — with a conversational AI agent at its core.',
+  impact: 'One contractor operates an entire business through this system — doing the work that would normally require a team of 5 people.',
   stack: ['Next.js', 'FastAPI', 'Ollama', 'PostgreSQL'],
   status: null,
 }
 
 ## The Problem
 
-Placeholder — full content incoming.
+Security camera installation contractors run lean operations, but the administrative overhead does not scale linearly with crew size. Quoting, invoicing, scheduling, inventory tracking, and client management each demand their own workflow. The standard solution — hiring administrative staff or stitching together 5+ SaaS products — is capital-inefficient and brittle. The question was whether a single system, built around a conversational AI core, could absorb all of that operational complexity.
+
+## Architecture
+
+Contractor OS is a full ERP with a conversational AI agent (Neural Core) at the center of the interaction model. The system is not a chatbot bolted onto a CRUD app. The AI agent is the primary interface through which the contractor operates their business.
+
+**Neural Core** recognizes 30+ intents, powered by Ollama running local open-source LLM inference. The contractor talks to the system in natural language; the system routes to the appropriate backend operation.
+
+**79 API endpoints** span the full backend surface: quoting, invoicing, scheduling, inventory, client management, financial reporting, and administrative operations.
+
+**23-table PostgreSQL schema** models the complete business domain — clients, jobs, line items, schedules, inventory, financials, and audit trails.
+
+**Financial safety guardrails** enforce a hard architectural constraint: the AI agent can read any financial data, but every write operation requires human-in-the-loop approval. The system will surface a quote, draft an invoice, or flag a discrepancy — but it never autonomously commits a financial transaction.
+
+## By the Numbers
+
+- **30+** recognized intents across the conversational AI agent
+- **79** API endpoints across the full backend
+- **23** tables in the PostgreSQL schema
+- **0** financial write operations without human approval
+- **1** person built the entire system
+
+## Key Design Decisions
+
+**AI assists, never decides.** The most important architectural choice is what the AI is *not* allowed to do. Neural Core can read financial data, draft documents, and surface recommendations — but every write that touches money requires explicit human confirmation. This is not a technical limitation. It is a philosophical choice about where autonomous systems should and should not have authority.
+
+**Local inference, no API dependency.** LLM inference runs on Ollama, entirely local. No OpenAI API calls, no token costs, no data leaving the system. The contractor's business data stays on their infrastructure.
+
+**One system, not five integrations.** Instead of connecting Calendly + QuickBooks + HubSpot + a spreadsheet, the entire operational surface lives in a single coherent data model. Every entity in the system — client, job, invoice, inventory item — is a first-class citizen with full relational context.
