@@ -34,7 +34,7 @@ const projects = [
     stack: 'PDMPs · Limit cycles · Detailed balance',
   },
   {
-    tag: 'RESEARCH',
+    tag: 'SYSTEM',
     name: 'MOLECULA',
     slug: 'molecula',
     description: 'LTV-MPC architecture for AV ride comfort. Cost weights derived from the Glue Program\'s oscillatory dynamics.',
