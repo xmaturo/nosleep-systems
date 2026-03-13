@@ -1,108 +1,91 @@
-import Link from 'next/link';
+import { notFound } from 'next/navigation'
 
-const projectData = {
-  'contractor-os': {
-    tag: 'SYSTEM',
-    name: 'Contractor OS',
-    description: 'AI-powered ERP for security camera contractors. Neural Core agent, 30+ intents, 23-table schema, financial safety guardrails, human-in-the-loop for all writes.',
-    impact: 'One contractor operates like a team of 5',
-    stack: 'Next.js · FastAPI · Ollama · PostgreSQL',
-  },
-  'lacra': {
-    tag: 'SYSTEM',
-    name: 'LACRA',
-    description: 'Deterministic market structure analysis. 5 detection engines, 4 institutional APIs, event sourcing architecture. Describes conditions — never prescribes.',
-    impact: 'Institutional-grade analysis, zero SaaS spend',
-    stack: 'Python · FastAPI · AsyncIO · React',
-  },
-  'glue-program': {
-    tag: 'RESEARCH',
-    name: 'The Glue Program',
-    description: 'Universal constant ξ = ½ in oscillatory systems under detailed balance. 34-page treatise with five-level evidence taxonomy.',
-    impact: 'One theorem powers three engineering papers',
-    stack: 'PDMPs · Limit cycles · Detailed balance',
-  },
-  'molecula': {
-    tag: 'RESEARCH',
-    name: 'MOLECULA',
-    description: 'LTV-MPC architecture for AV ride comfort. Cost weights derived from the Glue Program\'s oscillatory dynamics.',
-    impact: 'Theory-to-product pipeline for autonomous vehicles',
-    stack: 'Control theory · MPC · LTV architecture',
-  },
-  'cbf-diagnostics': {
-    tag: 'RESEARCH',
-    name: 'CBF Diagnostics',
-    description: 'Phase transition in safety filter statistics at β* ≈ 3. ξ ≈ 0.5 emerges in the tanh regime (R² = 0.958).',
-    impact: 'New diagnostic framework for safety-critical AV',
-    stack: 'Control barrier functions · 2D simulation',
-  },
-};
+// Registry: maps slug to dynamic import
+// Each MDX file exports: metadata = { title, type, description, impact, stack, status }
+const registry = {
+  'contractor-os':   () => import('@/content/projects/contractor-os.mdx'),
+  'lacra':           () => import('@/content/projects/lacra.mdx'),
+  'ferrum':          () => import('@/content/projects/ferrum.mdx'),
+  'glue-program':    () => import('@/content/projects/glue-program.mdx'),
+  'molecula':        () => import('@/content/projects/molecula.mdx'),
+  'cbf-diagnostics': () => import('@/content/projects/cbf-diagnostics.mdx'),
+}
 
 export function generateStaticParams() {
-  return Object.keys(projectData).map((slug) => ({ slug }));
+  return Object.keys(registry).map((slug) => ({ slug }))
 }
 
-export function generateMetadata({ params }) {
-  const project = projectData[params.slug];
-  if (!project) return { title: 'Project Not Found' };
+export async function generateMetadata({ params }) {
+  const loader = registry[params.slug]
+  if (!loader) return {}
+  const mod = await loader()
   return {
-    title: `${project.name} — No Sleep Systems`,
-    description: project.description,
-  };
+    title: `${mod.metadata.title} — No Sleep Systems`,
+    description: mod.metadata.description,
+  }
 }
 
-export default function ProjectPage({ params }) {
-  const project = projectData[params.slug];
+export default async function ProjectPage({ params }) {
+  const loader = registry[params.slug]
+  if (!loader) notFound()
 
-  if (!project) {
-    return (
-      <div className="pt-28 px-6 text-center">
-        <h1 className="font-display text-[36px] text-gold uppercase">PROJECT NOT FOUND</h1>
-        <Link href="/projects" className="font-mono text-[10px] text-ember mt-4 inline-block">
-          ← Back to projects
-        </Link>
-      </div>
-    );
-  }
-
-  const isSystem = project.tag === 'SYSTEM';
+  const { default: Content, metadata } = await loader()
 
   return (
-    <div className="pt-20">
-      <div className="px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/projects" className="font-mono text-[10px] text-cream/40 hover:text-gold transition-colors uppercase tracking-[2px] mb-8 inline-block">
-            ← All projects
-          </Link>
+    <main className="min-h-screen bg-void pt-24 pb-16">
+      <div className="max-w-3xl mx-auto px-6">
 
-          <span className={`inline-block font-display text-[8px] uppercase tracking-[1px] px-2 py-0.5 border-[2px] ${isSystem ? 'border-ember' : 'border-gold'} text-cream mb-4`}>
-            {project.tag}
-          </span>
+        {/* Type tag */}
+        <span className="inline-block font-display text-xs tracking-widest uppercase px-3 py-1 border-[3px] border-rust text-rust mb-6">
+          {metadata.type}
+        </span>
 
-          <h1 className="font-display text-[36px] md:text-[48px] uppercase text-cream mb-6">
-            {project.name}
-          </h1>
+        {/* Title */}
+        <h1 className="font-display text-4xl md:text-5xl text-gold uppercase leading-tight mb-4">
+          {metadata.title}
+        </h1>
 
-          <p className="font-mono text-[12px] text-cream/60 leading-relaxed mb-8 max-w-2xl">
-            {project.description}
-          </p>
+        {/* Description */}
+        <p className="font-mono text-cream/80 text-sm md:text-base leading-relaxed mb-6">
+          {metadata.description}
+        </p>
 
-          <div className="border-[3px] border-wine hatch-03 p-6 mb-8">
-            <p className="font-mono text-[9px] text-ember font-bold uppercase mb-2">
-              → {project.impact}
-            </p>
-            <p className="font-mono text-[9px] text-cream/30">
-              {project.stack}
-            </p>
+        {/* Impact line */}
+        <p className="font-mono text-ember text-sm mb-6">
+          → {metadata.impact}
+        </p>
+
+        {/* Stack */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {metadata.stack.map((tech) => (
+            <span key={tech} className="font-mono text-xs text-cream/60 border border-wine px-2 py-0.5">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {/* Status badge if present */}
+        {metadata.status && (
+          <div className="font-mono text-xs text-gold/70 border border-gold/30 px-3 py-1 inline-block mb-10">
+            {metadata.status}
           </div>
+        )}
 
-          <div className="border-t-[3px] border-wine pt-8">
-            <p className="font-mono text-[11px] text-cream/40 leading-relaxed">
-              Full project write-up coming soon. This page will be powered by MDX content from the <code className="text-gold">/content/projects/</code> directory.
-            </p>
-          </div>
+        {/* Divider */}
+        <div className="border-t-[3px] border-wine mb-10" />
+
+        {/* MDX body content */}
+        <article className="prose-none">
+          <Content />
+        </article>
+
+        {/* Back link */}
+        <div className="border-t-[3px] border-wine mt-16 pt-8">
+          <a href="/projects" className="font-display text-sm text-ember hover:text-gold uppercase tracking-wide transition-colors duration-200">
+            ← All Projects
+          </a>
         </div>
       </div>
-    </div>
-  );
+    </main>
+  )
 }

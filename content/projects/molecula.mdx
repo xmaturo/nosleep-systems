@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'MOLECULA',
+  type: 'RESEARCH',
+  description: "An LTV-MPC architecture for autonomous vehicle ride comfort optimization. The cost function weights are not hand-tuned — they are derived directly from the Glue Program's oscillatory dynamics and phase-transition behavior.",
+  impact: 'The math literally becomes the engineering. Abstract theory → control architecture → potential AV product.',
+  stack: ['LTV-MPC', 'Control Theory', 'Phase Dynamics', 'Python'],
+  status: 'Actively seeking seed funding and academic collaboration',
+}
+
+## The Problem
+
+Ride comfort in autonomous vehicles is a control problem: the MPC (Model Predictive Control) controller must balance trajectory tracking, safety, and passenger comfort simultaneously. The standard approach is to hand-tune the cost function weights — a tedious process that produces parameters with no theoretical justification. Every time the vehicle dynamics change, the tuning starts over.
+
+The question was whether the cost function weights could be *derived* from a principled mathematical framework rather than manually adjusted.
+
+## Architecture
+
+MOLECULA is an LTV-MPC (Linear Time-Varying Model Predictive Control) architecture where the cost function weights come directly from the Glue Program. The connection is specific:
+
+**Phase-transition dynamics** from the Glue Program's crossover law determine how the controller weights shift between competing objectives (comfort vs. tracking vs. safety) as a function of the driving regime.
+
+**The tanh crossover** maps directly to the weight schedule: in calm conditions (low M/H), the controller prioritizes comfort. As the regime intensifies (high M/H), weights shift toward safety — following the same saturation curve that governs every oscillatory system under detailed balance.
+
+**LTV formulation** allows the controller to adapt in real time. The weights are not static — they evolve with the driving conditions, following a trajectory through the parameter space that the Glue law prescribes.
+
+## Why This Matters
+
+This is a theory-to-product pipeline:
+
+1. **The Glue Program** discovers a universal constant (ξ = ½) governing oscillatory phase dynamics
+2. **MOLECULA** turns that constant into a principled weight schedule for an MPC controller
+3. **The AV product** uses that controller for ride comfort optimization
+
+The math does not just *inform* the engineering. The math *is* the engineering. The cost function weights are not approximations of the theory — they are direct consequences of it.
+
+## Current Status
+
+Actively pursuing two tracks:
+
+- **Seed funding** for prototype development and simulation validation
+- **Academic collaboration** with Prof. Angela Schoellig at TUM (Technical University of Munich) on the control theory and experimental validation

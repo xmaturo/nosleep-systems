@@ -1,0 +1,37 @@
+export const metadata = {
+  title: 'LACRA',
+  type: 'SYSTEM',
+  description: 'A deterministic market structure analysis engine. Five independent detection engines running in parallel against four institutional data feeds. Strictly descriptive — the system surfaces conditions, never prescribes trades.',
+  impact: 'Delivers institutional-grade market analysis with zero SaaS spend and zero headcount.',
+  stack: ['Python', 'FastAPI', 'AsyncIO', 'React'],
+  status: null,
+}
+
+## The Problem
+
+Institutional-grade market structure analysis typically requires either expensive SaaS platforms (Bloomberg Terminal, Refinitiv) or teams of analysts maintaining custom infrastructure. The core analytical task — detecting structural conditions in market data — is computationally well-defined but operationally expensive. The question was whether a single engineer could build a system that matches institutional detection quality using open-source tools and direct API access.
+
+## Architecture
+
+LACRA runs five independent detection engines in parallel, each analyzing a different structural dimension of market conditions. The engines share no state at runtime — they consume the same data feeds but produce independent assessments. This parallel architecture means a failure in one engine does not cascade.
+
+**Four institutional API integrations** provide the data feeds. The system ingests from multiple sources to cross-validate signals and reduce single-source dependency.
+
+**Event sourcing architecture** provides a full audit trail. Every detection event, every data point ingested, every assessment produced is recorded immutably. The system can reconstruct its complete analytical state at any historical point.
+
+**AsyncIO-based concurrency** handles the parallel engine execution and high-frequency data ingestion. The system processes multiple data streams simultaneously without blocking.
+
+## By the Numbers
+
+- **5** independent detection engines running in parallel
+- **4** institutional API integrations
+- **100%** audit trail via event sourcing
+- **0** SaaS spend — built entirely on open-source tools
+
+## Key Design Decisions
+
+**Describes, never prescribes.** This is the defining philosophical constraint. LACRA surfaces market conditions and structural patterns. It never outputs a trade recommendation, a buy/sell signal, or an action directive. The system provides information; the human makes decisions. This is not a missing feature — it is the point.
+
+**Parallel, not pipelined.** The five detection engines run independently, not as stages in a pipeline. A pipeline architecture creates coupling — if stage 3 fails, stages 4 and 5 produce nothing. Parallel execution means each engine delivers value regardless of the others.
+
+**Event sourcing over state mutation.** Every analytical event is immutable. The system never overwrites its own history. This matters for a market analysis tool because you need to ask: "What did the system see at 2:47 PM on March 3?" — not just "What does it see now?"
