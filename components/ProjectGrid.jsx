@@ -18,6 +18,14 @@ const projects = [
     stack: 'Python · FastAPI · AsyncIO · React',
   },
   {
+    tag: 'SYSTEM',
+    name: 'FERRUM',
+    slug: 'ferrum',
+    description: 'Thermodynamically grounded MPC for servo axis stick-slip compensation. The velocity weight is derived from ξ = ½ — not tuned.',
+    impact: '→ −80.4% velocity roughness, complete stick-slip elimination, Pareto-optimal by proof.',
+    stack: 'LTV-MPC · LuGre Friction · DARE · Python',
+  },
+  {
     tag: 'RESEARCH',
     name: 'The Glue Program',
     slug: 'glue-program',
@@ -55,17 +63,10 @@ export default function ProjectGrid() {
           <div className="flex-1 border-t-[2px] border-dashed border-wine" />
         </div>
 
-        {/* Top row: 3 cards */}
-        <div className="grid md:grid-cols-3 gap-[3px] mb-[3px]">
-          {projects.slice(0, 3).map((project, i) => (
+        {/* 6-card grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3px]">
+          {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
-        </div>
-
-        {/* Bottom row: 2 cards */}
-        <div className="grid md:grid-cols-2 gap-[3px]">
-          {projects.slice(3).map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i + 3} />
           ))}
         </div>
       </div>
