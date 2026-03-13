@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-void text-cream font-mono min-h-screen">
         <Navbar />
-        <main>{children}</main>
+        <div>{children}</div>
         <Footer />
       </body>
     </html>
