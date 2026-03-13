@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'CBF Diagnostics',
   type: 'RESEARCH',
-  description: "Discovery of a continuous phase transition in safety filter intervention statistics. At critical softness β* ≈ 3, the system transitions from power law to tanh — and the Glue Program's universal constant ξ ≈ 0.5 emerges.",
+  description: "Discovery of a continuous phase transition in safety filter intervention statistics. The Glue Program's universal constant ξ ≈ 0.5 emerges in a completely different physical context — providing a new diagnostic framework for safety-critical systems.",
   impact: 'A new diagnostic framework for evaluating safety-critical autonomous vehicle systems, bridging control theory and statistical physics.',
   stack: ['Control Barrier Functions', 'CBF-QP', 'Phase Transition Analysis', 'Python', 'NumPy'],
   status: null,
@@ -9,48 +9,35 @@ export const metadata = {
 
 ## The Problem
 
-Control Barrier Function (CBF) safety filters are among the most successful tools for certifiable robot safety. A CBF-QP filter solves a quadratic program at each timestep to minimally modify an operator's command while guaranteeing the system stays in a safe set. But there is no universal diagnostic for evaluating whether a safety filter is well-tuned. The question was whether the Glue Program's universal constant ξ = ½ could serve as such a diagnostic.
+Control Barrier Function (CBF) safety filters are among the most successful tools for certifiable robot safety. But there is no universal diagnostic for evaluating whether a safety filter is well-tuned. The question was whether the Glue Program's constant ξ = ½ could serve as such a diagnostic.
 
-## The Conjecture — And Its Refutation
+## What Happened
 
-The structural resemblance between CBF interventions and PDMP jumps is suggestive: both involve a background flow interrupted by discrete corrections triggered by a state-dependent condition. This motivated the conjecture that CBF intervention statistics obey the Glue law.
+The conjecture was tested and it failed for deterministic (hard-threshold) CBF systems. The hard CBF produces a convex power law response — the qualitative opposite of what the Glue law predicts. Most investigations would stop here.
 
-**The conjecture fails for deterministic CBF systems.** The hard CBF produces a convex power law |Δθ| ∝ (M/H)² — the qualitative opposite of the concave tanh saturation predicted by the Glue law. The step-function activation boundary breaks the spectral structure that the Glue law requires.
+The failure revealed something deeper: a **continuous phase transition** in the filter's intervention statistics, parameterized by the softness of the intervention threshold. At a critical threshold softness, the system transitions from one mathematical regime to another — and in the new regime, the Glue Program's constant emerges with high statistical confidence.
 
-This is where most investigations would stop. The conjecture was wrong. But the failure revealed something deeper.
+## Results
 
-## The Discovery: A Phase Transition at β* ≈ 3
+The phase transition occurs at a critical parameter value. Below it: power law regime, no universal diagnostic exists. Above it: tanh regime, ξ ≈ 0.5 emerges with R² = 0.958.
 
-Replacing the hard threshold with a probabilistic one — P(intervene) = exp(−βd), where β controls the softness — reveals a continuous phase transition in the functional form of the intervention-correction relationship:
-
-| β (softness) | Exponent b | ξ (tanh fit) | R² (tanh) | Regime |
-|---|---|---|---|---|
-| hard | 1.99 | >20 | 0.87 | Power law (convex) |
-| 3.0 | 0.97 | ∞ | 0.96 | **Transition point** |
-| 5.0 | 0.51 | 0.53 | 0.96 | Tanh (concave) |
-
-**Below β* ≈ 3:** the system lives in a power law regime. The correction accelerates with M/H. No universal diagnostic exists — the exponent varies depending on which parameter you sweep.
-
-**Above β* ≈ 3:** the system enters a tanh regime. The Glue prediction ξ = 0.527 ± 0.03 emerges with R² = 0.958. The universal constant appears — in a completely different physical context from where it was derived.
-
-**At β* ≈ 3:** the two models tie in explanatory power. The exponent passes through b = 1 (linear). This is the transition point.
-
-## The Prerequisite Paradox
-
-The Glue framework formally requires h(θ) > 0 everywhere — a nonzero hazard rate at every point on the cycle. Adding a background hazard floor h₀ > 0 should improve the result.
-
-It destroys it. At h₀ = 0.01, ξ jumps to 15.8. The Glue law works *better* when its own formal prerequisite is violated. The background interventions far from the obstacle inject noise into bins where corrections are physically meaningless, corrupting the diagnostic.
+The transition is continuous — the system's behavior changes smoothly across the boundary, not abruptly. The specific parameter values, the mechanism that drives the transition, and the derivation connecting it to the Glue framework are in the paper.
 
 ## By the Numbers
 
-- **β* ≈ 3** — critical softness where the phase transition occurs
-- **ξ = 0.527 ± 0.03** at β = 5 with R² = 0.958
+- **R² = 0.958** — goodness of fit in the tanh regime
+- **ξ = 0.527 ± 0.03** — consistent with the Glue prediction of ½
 - **200,000** timesteps per configuration
 - **4** parameter sweeps (CBF gain, safety margin, noise, obstacle geometry)
-- **b = 1.99 → 0.51** — power law exponent decreases continuously across the transition
+
+## Why It Matters
+
+**For safety filter design:** filters operating in the tanh regime have a well-defined functional form and a measurable diagnostic. Filters in the power law regime do not. The phase transition identifies which design choices produce diagnosable safety filters.
+
+**For the Glue Program:** the constant ξ ≈ 0.5 now appears in three physically unrelated contexts — oscillatory PDMPs, servo axis stick-slip, and safety filter intervention statistics. Each appearance was derived or discovered independently.
 
 ## Key Design Decisions
 
-**Honest methodology.** The conjecture was tested, it failed, and the failure was published alongside the deeper discovery. The paper does not hide the refutation — it leads with it. The negative result is what makes the positive finding credible.
+**Honest methodology.** The conjecture was tested, it failed, and the failure was reported alongside the deeper discovery. The negative result is what makes the positive finding credible.
 
-**Design criterion for safety filters.** Filters operating in the tanh regime (β > β*) have a well-defined functional form, a measurable diagnostic (ξ), and a universal target (ξ → 0.5). Filters in the power law regime have a varying exponent that provides no universal benchmark. The phase transition is not just a theoretical finding — it identifies which design choices produce diagnosable safety filters.
+**Design criterion, not just theory.** The phase transition is not only a theoretical finding — it provides a concrete, measurable criterion for safety filter tuning.
