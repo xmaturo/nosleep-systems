@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'VIMANA',
+  type: 'SPECULATIVE VEHICLE',
+  tagColor: 'ember',
+  description: 'A full engineering package for an adaptive metasurface platform. 10 volumes. 26 pages. Every subsystem specified — except the one that matters most.',
+  hook: 'The craft is fully engineered. The propulsion mechanism is an open problem.',
+}
+
+## What It Is
+
+VIMANA is a complete vehicle engineering package built on the Glue Program axiom. It describes a spherical platform — 5.2 meters in diameter — with 24 identical sensing-computing-actuating modules mounted on an internal toroid ring. The modules manage an active electromagnetic skin across five spectral bands.
+
+The package spans 10 volumes: system architecture, module engineering, control systems, EM/stealth domain, structure and thermal, power and energy, software architecture, build sequence, test certification, and open problems.
+
+Every volume contains real specifications. Real BOMs. Real FPGA firmware block diagrams. Real thermal calculations. Real FMEA tables. This is not a concept sketch — it is a build package.
+
+## The Architecture
+
+The platform is organized in four concentric zones. The outermost zone is an active metasurface skin — five layers managing visible, IR, RF-high, RF-low, and structural signatures. Below that sits a control ring of 24 universal modules, each running local control loops at 5 kHz. A core zone houses redundant supervisors, power distribution, and a coherence reference oscillator. At the center, a Faraday-shielded cabin.
+
+Each module is self-contained: a Zynq-7020 FPGA, 14-bit ADCs sampling at 1 GSPS, phase shifter arrays, Peltier thermal control, and fiber optic interconnects. The modules communicate through a custom lightweight protocol with 74-byte frames at 1 Gbps — bus utilization sits at 1.4%.
+
+The control law is elegant: each module maintains R = M/H at a target value using a PI controller in log domain. The supervisor distributes gradient-R commands to translate pilot intent into distributed phase coherence across the array.
+
+## The Honest Problem
+
+Volume 10 is titled "Open Problems." The first entry — OP-1, marked CRITICAL — reads: "What physical process couples phase coherence to macroscopic force?"
+
+The mass budget calculates 3,800 kg. Hover requires 37,278 N. At 5 kW hover power, the required thrust-to-power ratio is 7.5 N/W. The best electric helicopter achieves 0.06 N/W. The gap is 125×.
+
+The entire avionics, control, EM, and structural system is valid engineering. It has value as an adaptive metasurface testbed regardless of whether OP-1 is ever resolved. But without OP-1, the vehicle does not fly.
+
+## The Build Path
+
+The program is phased with hard gates. Phase 0 is a $5K single-module prototype. Phase 1 is a $12K three-module coherence ring. Phase 1E adds X-band EM for $8K. Later phases scale to full spherical integration and flight test. Total program estimate: $790K over 3-4 years.
+
+The minimum viable investment — Phase 0 + 1 + 1E — is $25K in 6 months. Enough to validate the Glue framework in hardware.
+
+## Why It's Here
+
+VIMANA exists because the question is worth asking with engineering rigor. If the control architecture works on an EM testbed, the platform has value. If OP-1 is ever resolved, the build package is ready. Either way, the engineering is real.

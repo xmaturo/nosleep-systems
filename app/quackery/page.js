@@ -39,7 +39,7 @@ const entries = [
     id: 'nuevas',
     tag: 'Speculative Theory',
     tagColor: 'bg-magenta',
-    name: 'NUEVAS FÍSICAS',
+    name: 'UNIFIED PHYSICS',
     nameColor: 'text-magenta',
     hook: '83 laws of physics. One equation. One constant. ξ\u00a0=\u00a0½.',
     vitalBorder: 'border-l-magenta',
@@ -144,9 +144,11 @@ function Entry({ entry }) {
       </span>
 
       {/* Name */}
-      <h2 className={`font-display text-[clamp(2.5rem,6vw,4.5rem)] uppercase leading-none mb-4 tracking-tight ${entry.nameColor}`}>
-        {entry.name}
-      </h2>
+      <Link href={`/quackery/${entry.id}`}>
+        <h2 className={`font-display text-[clamp(2.5rem,6vw,4.5rem)] uppercase leading-none mb-4 tracking-tight ${entry.nameColor} hover:opacity-80 transition-opacity duration-150`}>
+          {entry.name}
+        </h2>
+      </Link>
 
       {/* Hook */}
       <p className="font-mono text-[clamp(0.9rem,1.8vw,1.1rem)] text-cream/90 leading-relaxed mb-8 max-w-[700px]">
