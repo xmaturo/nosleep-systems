@@ -1,0 +1,51 @@
+export const metadata = {
+  title: 'HARVESTER BUILD',
+  type: 'BUILD GUIDE',
+  tagColor: 'rust',
+  description: "A complete build guide for an atmospheric energy harvester tuned to the Glue Program's optimal crossover point. Real parts. Real schematic. Honest performance.",
+  hook: '$367 in parts. One spark gap. One universal constant.',
+}
+
+## What It Is
+
+An atmospheric energy harvester. It collects charge from the atmospheric potential gradient — roughly 100-300 V/m near ground level — using an elevated antenna, accumulates it in a capacitor bank, and discharges through a tuned spark gap into a load circuit.
+
+The design is optimized using the Glue Program's crossover law at the point R = M/H = ½.
+
+## The Five Stages
+
+Stage 1 is charge collection: an elevated aluminum plate antenna. The plate area and height determine the event rate — the Glue parameter h̄. Larger plate and greater height mean more charge per cycle.
+
+Stage 2 is frequency selection: an LC tank circuit tuned to the system's natural resonant frequency. The original design targets the Schumann resonance at 7.83 Hz, but the practical tuning strategy is simpler — measure whatever frequency the antenna-coil assembly naturally selects and tune the spark gap to achieve M/H = ½ at that frequency.
+
+Stage 3 is energy accumulation: a capacitor bank that sets the modulation depth H.
+
+Stage 4 is the Glue-critical component: an adjustable spark gap with micrometer control. A tungsten needle pointed at a copper plate. The needle-to-plate geometry breaks detailed balance — the field concentrates at the point, making breakdown preferentially initiate from needle to plate. The gap distance controls the jump magnitude M. Adjusting it to achieve M/H = ½ is the entire tuning procedure.
+
+Stage 5 is output: a pulse transformer, bridge rectifier, and filter capacitor deliver DC to a load.
+
+## The Honest Numbers
+
+The theoretical maximum is 7.6 W. That requires an event rate of 50 Hz and modulation depth of 0.5. In practice, with a 1 m² plate at 3 meters, realistic values are h̄ ~ 0.01-1 Hz and H ~ 0.1-0.3.
+
+At ground level in typical conditions: less than 10 µW. At rooftop height with fair weather: roughly 1 mW. At an elevated site with a large antenna and corona assist: maybe 50 mW.
+
+This is not a practical power source at modest scales. It is a Glue validation instrument.
+
+## The Validation Target
+
+Build it. Set R = M/H = ½ using the micrometer. Measure the phase delay between the voltage peak and the spark event. Plot Δθ/Δmax versus 2M/H for multiple gap settings.
+
+If the Glue law holds, all points collapse onto y = tanh(x) with ξ = 0.500 ± 0.005.
+
+That's the experiment. Not power generation — law validation.
+
+## The Budget
+
+$367 in all-new parts. $282 without test equipment. Roughly $120 if you scrounge. The micrometer stage is the only precision component. Everything else is standard hardware-store and electronics-supplier stock.
+
+Build time: 1-2 weekends.
+
+## Why It's Here
+
+Because this is the most tangible thing in the quackery section. You can actually build it. The BOM is real. The schematic is real. The safety warnings are real (high voltage — capacitors store lethal charge). And the honest performance table tells you exactly what to expect: almost nothing, unless you have a very large antenna at significant height. The value is not the power. The value is measuring ξ.
