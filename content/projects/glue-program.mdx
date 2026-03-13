@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'The Glue Program',
   type: 'RESEARCH',
-  description: 'A universal crossover law for phase dynamics in oscillatory piecewise-deterministic Markov processes. Proves that under detailed balance, all such systems obey a single law governed by the constant ξ = ½ — derived exactly, not fitted.',
+  description: 'A universal crossover law for phase dynamics in oscillatory piecewise-deterministic Markov processes. Proves that under detailed balance, all such systems obey Δθ = Δmax · tanh(M/ξH) with ξ = ½ — derived exactly, not fitted.',
   impact: 'One theorem powers three engineering applications — MOLECULA, FERRUM, and CBF Diagnostics.',
   stack: ['PDMPs', 'Fourier Analysis', 'Complex Analysis', 'Python', 'NumPy'],
   status: null,
@@ -9,33 +9,78 @@ export const metadata = {
 
 ## The Problem
 
-Oscillatory systems subject to state-dependent stochastic disruptions appear across physics, biology, engineering, and control theory. Each domain has developed its own models, but there was no unifying law governing how the phase statistics of these systems behave — specifically, how the competition between disruption rate and disruption magnitude determines the mean phase offset.
+Oscillatory systems subject to state-dependent stochastic disruptions appear across physics, biology, engineering, and control theory. Each domain has developed its own models, but there was no unifying law governing how the phase statistics of these systems behave — specifically, how the competition between disruption rate and disruption magnitude determines the mean phase offset. The question was whether such a universal law exists, and if so, what constant governs it.
 
 ## The Result
 
-The Glue Program proves that under detailed balance (time-reversal symmetry), all oscillatory PDMPs on limit cycles obey a universal crossover law governed by a single constant: **ξ = ½**.
+The Glue Program proves that under detailed balance (time-reversal symmetry), all oscillatory PDMPs on limit cycles obey:
 
-The constant is not fitted to data. It is derived exactly from the self-adjointness that detailed balance forces on the system's transfer operator. The proof uses three lemmas from three different branches of mathematics — Fourier analysis, perturbation theory, and a classical uniqueness theorem from complex analysis.
+**Δθ = Δmax · tanh(M / ξH), where ξ = ½ exactly.**
 
-The paper includes a five-level evidence taxonomy calibrating every claim from axiom through proved theorem to founded speculation. The core law is Level I — proved theorem.
+- **H** is the hazard modulation depth — how much the disruption rate varies around the cycle
+- **M** is the effective jump magnitude — how large the disruptions are, weighted by where they happen
+- **Δmax** is the maximum angular separation between competing attractors
+- **ξ = ½** is a universal constant — independent of the specific system, its parameters, or its dimensionality
+
+The constant ξ = ½ is not fitted. It is derived exactly from the self-adjointness that detailed balance forces on the transfer operator.
+
+## Proof Architecture
+
+The proof rests on three lemmas, each from a different branch of mathematics:
+
+**Lemma 1 — The Phasor Relation.** Self-adjointness of the transfer operator in the Fourier basis forces the jump phasor perpendicular to the hazard phasor with double amplitude: M = −2i·Im(H). This is the algebraic origin of the factor 2, and hence of ξ = ½. The geometric content: under detailed balance, the relationship between how often disruptions happen and how large they are is locked into a specific orthogonality constraint.
+
+**Lemma 2 — Taylor Series.** The normalized crossover function satisfies Δθ/Δmax = x − x³/3 + O(x⁵) with x = 2M/H. The coefficients are universal — they depend only on detailed balance, not on system specifics. These match the Taylor expansion of tanh exactly through two nontrivial orders.
+
+**Lemma 3 — Carlson's Theorem.** The function tanh is the unique bounded analytic function with the Taylor expansion from Lemma 2. This closes the proof without assuming any ODE for the crossover function. The argument applies a classical uniqueness result from complex analysis (Carlson, 1914): if a function is bounded, analytic in a half-plane, and matches a specific Taylor series, there is only one such function. No differential equation needed.
+
+The three lemmas combine: Lemma 1 produces the algebraic constraint. Lemma 2 computes the series. Lemma 3 proves the series uniquely determines tanh. Therefore ξ = ½.
+
+## Evidence Level Taxonomy
+
+Every claim in the paper is calibrated to an explicit evidence hierarchy:
+
+- **Level 0** — Axiom/Definition. Foundational basis of the formal system.
+- **Level I** — Proved Theorem. Complete rigorous proof. The core law lives here.
+- **Level II** — Formal Derivation. Systematic mathematical development, not a complete proof. Extensions to tori, quantum systems, and broken detailed balance live here.
+- **Level III** — Numerical Validation. Systematic, reproducible computational evidence. The Brusselator, Hopf, and 10,000-system tests live here.
+- **Level IV** — Structural Analogy. Formal correspondence between frameworks. MaxEnt and systems theory connections live here.
+- **Level V** — Founded Speculation. Conjecture based on indirect evidence. Cosmological and string-duality extensions live here.
 
 ## Numerical Validation
 
 Three independent computational tests confirm the law:
 
-**10,000 random Fourier systems** with exact detailed balance: ξ̄ = 0.50002, σ = 0.0008. 99.7% of systems fall within [0.498, 0.502]. The law is not a property of special families — it is a generic consequence of detailed balance.
+**10,000 random Fourier systems** with exact detailed balance imposed numerically. Result: ξ̄ = 0.50002, σ = 0.0008. 99.7% of systems fall within [0.498, 0.502]. This is the strongest evidence — the law is not a property of special families but a generic consequence of detailed balance across the space of all oscillatory PDMPs.
 
-**Brusselator oscillator** tested deliberately far outside the formal proof regime: ξ = 0.500 ± 0.005. The law holds well beyond its proved domain.
+**Brusselator oscillator** deliberately tested far outside the weak modulation regime (H ≈ 1.38, M ≈ 1.90 — the proof assumes H, M ≪ 1). Result: ξ = 0.500 ± 0.005. The law holds well beyond its formal proof domain.
 
-**Hopf bifurcation model** across eight configurations: maximum error 0.09%.
+**Hopf bifurcation model** across eight (H, M) configurations. Maximum error: 0.09%. All points collapse onto y = tanh(x).
+
+A concrete experimental protocol using a PLL (Phase-Locked Loop) circuit is proposed in the paper for physical validation.
 
 ## By the Numbers
 
 - **ξ = 0.50002 ± 0.0008** across 10,000 random systems
 - **0.09%** maximum error on Hopf validation
+- **99.7%** of random systems within [0.498, 0.502]
 - **5** formal extensions (variational, spectral, torus, quantum, broken-DB)
 - **3** lemmas from 3 branches of mathematics
 - **1** universal constant derived from first principles
+
+## Formal Extensions
+
+The paper develops five extensions beyond the core theorem:
+
+**Variational** — the crossover function minimizes a specific action functional. The solution is a topological domain wall (kink) connecting two asymptotic regimes.
+
+**Spectral** — the spectral gap of the transfer operator is governed by the crossover ratio R = M/H.
+
+**Torus generalization** — extension to n-dimensional tori with a matrix Glue law under coupled detailed balance constraints.
+
+**Quantum** — a Lindblad bosonic mode in the large-amplitude limit with KMS condition produces a PDMP with ξ = ½.
+
+**Broken detailed balance** — when time-reversal symmetry is broken by a small parameter ε, the constant shifts as ξ(ε) = ½ + αε + O(ε²). ξ = ½ is a fixed point — an infrared attractor under renormalization group flow.
 
 ## The Research Pipeline
 
@@ -46,3 +91,14 @@ The Glue Program is the mathematical foundation. Everything else builds on it:
 - **CBF Diagnostics** discovers ξ ≈ 0.5 emerging in safety filter phase transitions
 
 One theorem. Three engineering applications. Three different physical systems. Same constant.
+
+## Open Problems
+
+The paper explicitly states what has not been proved:
+
+- Strict universality for all systems with detailed balance (only first-harmonic-dominated systems are covered)
+- Whether ξ can be absorbed by reparametrization
+- Physical experimental measurement of ξ = ½ (the PLL protocol is proposed but not yet executed)
+- Non-perturbative proof without the weak modulation assumption (the numerical evidence strongly supports this but the formal proof does not yet cover it)
+
+These are stated as open problems in the paper, not hidden as weaknesses.
