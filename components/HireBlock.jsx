@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const roles = [
   {
     title: 'Senior / Staff Engineer',
@@ -59,6 +61,15 @@ export default function HireBlock() {
           >
             DOWNLOAD CV
           </a>
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/quackery"
+            className="font-mono text-sm text-rust lowercase tracking-wider hover:text-ember transition-colors duration-200"
+          >
+            wanna see some quackery? →
+          </Link>
         </div>
       </div>
     </section>
