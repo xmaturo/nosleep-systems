@@ -1,51 +1,71 @@
 export const metadata = {
   title: 'FERRUM',
   type: 'SYSTEM',
-  description: "Thermodynamically grounded MPC for servo axis stick-slip compensation. The velocity weight is not tuned — it is derived from the Glue Program's universal crossover constant ξ = ½.",
-  impact: 'Eliminates stick-slip entirely, achieves −80.4% velocity roughness vs baseline, and proves the Glue-derived weight sits on the optimal Pareto frontier.',
+  description: 'Model Predictive Control for servo axis stick-slip compensation. The controller weights are derived from a proprietary theoretical framework — not tuned empirically. Simulation-validated with complete stick-slip elimination.',
+  impact: '−80.4% velocity roughness vs baseline, complete stick-slip elimination, provably Pareto-optimal weight selection.',
   stack: ['LTV-MPC', 'LuGre Friction Model', 'DARE Terminal Cost', 'Lyapunov Stability', 'Python'],
   status: 'Simulation validated — hardware validation pending',
 }
 
 ## The Problem
 
-Stick-slip is the dominant source of positioning error and surface-finish degradation in servo-driven industrial machinery operating at low feed rates. When a ball-screw axis traverses the Stribeck velocity zone, the closed-loop system destabilizes into a limit cycle of periodic velocity oscillation, position error, and visible surface patterns.
+Stick-slip is the dominant source of positioning error and surface-finish degradation in servo-driven industrial machinery operating at low feed rates. When a ball-screw axis traverses the Stribeck velocity zone, the closed-loop system destabilizes into a limit cycle — periodic velocity oscillation, position error, and visible surface patterns in precision machining.
 
-Existing MPC approaches treat the velocity weight as a tuning parameter. This provides no principled answer to "why this weight?" and no proof of optimality.
+Every existing MPC approach treats the velocity weight as a tuning parameter, selected by cross-validation or heuristic. This means: no principled answer to "why this weight?", no proof of optimality, and retuning required every time the system changes.
 
-## What It Does
+## What FERRUM Does
 
-FERRUM is an LTV-MPC architecture running at 500 Hz where the velocity weight is derived from thermodynamic first principles — specifically, from the Glue Program's universal crossover constant ξ = ½. The derivation identifies stick-slip dynamics as a specific mathematical structure and proves that a unique weight ratio follows from that structure.
+FERRUM is an LTV-MPC architecture running at 500 Hz where the velocity weight is derived from a proprietary theoretical framework. The derivation is not empirical — it identifies a specific mathematical property of the stick-slip process and proves that a unique weight ratio follows from that property.
 
-The resulting weight **w_vel = 2 · w_tracking** is not a tuning choice. It is the unique ratio consistent with the thermodynamic properties of the stick-slip process. The paper proves this ratio sits on the optimal Pareto frontier — the point of maximum roughness reduction per unit of position error tolerance.
+The resulting weight is not one option among many. The paper proves it is the only ratio that sits on the optimal Pareto frontier at the point of maximum roughness reduction per unit of position error tolerance. Any other ratio is provably suboptimal.
+
+The method is not public. The results are.
 
 ## Simulation Results
 
-| Metric | PD Baseline | MPC (no Glue) | MPC + Glue (ξ = ½) | Δ vs PD |
+Four-condition comparison on an industrial cruise scenario (constant velocity in the Stribeck zone, 3.08 s cruise phase):
+
+| Metric | PD Baseline | MPC (standard) | MPC + FERRUM | Δ vs PD |
 |---|---|---|---|---|
 | RMS position error | 3426 μm | 537 μm | 763 μm | −77.7% |
 | Velocity roughness | 0.0440 | 0.0123 | 0.0086 | −80.4% |
 | Stick-slip events | 6 | 0 | 0 | −100% |
 
-The Glue-weighted controller achieves **30.1% lower velocity roughness** than unweighted MPC while sitting at the provably optimal Pareto trade-off point.
+FERRUM achieves **30.1% lower velocity roughness** than standard MPC while sitting at the provably optimal trade-off point. The position error increase (763 vs 537 μm) is the exact cost of operating at that optimum — and the paper proves no other weight achieves a better roughness-per-position ratio.
 
 ## By the Numbers
 
-- **w_vel = 2 · w_tracking** — derived, not tuned
 - **−80.4%** velocity roughness vs PD baseline
 - **−77.7%** RMS position error vs PD baseline
 - **0** stick-slip events (complete elimination)
-- **30.1%** roughness improvement over unweighted MPC
+- **30.1%** roughness improvement over standard MPC
 - **500 Hz** control loop, < 0.5 ms solve time
+- **Provably Pareto-optimal** — not just good, formally proven
 
-## Cross-Domain Universality
+## Architecture
 
-FERRUM and MOLECULA apply the same derivation chain to two physically unrelated systems. Same constant, same weight ratio, completely different physics. The details of both derivations are in the respective papers.
+The MPC architecture itself uses standard components — the novelty is entirely in how the weights are determined:
 
-## Key Design Decisions
+**LTV-MPC at 500 Hz** — Linear Time-Varying formulation with re-linearization at each control step. 15-step horizon (30 ms prediction window).
 
-**The weight is the claim.** The MPC architecture is standard control engineering. The novel element is that a specific weight ratio is proven to be thermodynamically necessary — not empirically discovered.
+**LuGre friction feedforward** — full contact dynamics modeling: bristle stiffness, bristle damping, viscous friction, Stribeck velocity-dependent friction capacity. Three-state plant: position, velocity, bristle deflection.
 
-**Honest limitations.** Stability guarantee is local. Friction model omits temperature dependence. Hardware validation is pending. The paper states all of this explicitly.
+**DARE terminal cost** with asymptotic stability proven via Lyapunov argument. Closed-loop spectral radius 0.9983.
 
-**Industrial deployment path.** 500 Hz matches standard servo drives. The online solve is a small linear system executable on any modern DSP. Directly deployable on CNC machines and precision assembly stages.
+**Computational footprint** — the online solve is a 15×15 linear system. No iterative QP solver needed. Sub-millisecond execution on any modern DSP.
+
+## Honest Limitations
+
+The stability guarantee is local — computed at the nominal linearization point. The LuGre model omits temperature dependence and lubrication film dynamics. The detailed balance assumption holds at steady cyclic operation; transient phases require separate analysis. All performance figures are simulation results. Hardware validation on a physical ball-screw axis is the next milestone.
+
+## Industrial Path
+
+500 Hz matches standard servo drives (Beckhoff EtherCAT, Siemens S120, Allen-Bradley Kinetix). LuGre feedforward is implementable as an IEC 61131-3 function block. The DARE terminal cost is computed offline; the online MPC runs on commodity real-time hardware. Directly deployable on CNC machines, precision grinding stages, EDM systems, and coordinate measuring machines.
+
+## Application Fit
+
+For **surface-finish-critical applications** (precision grinding, EDM, laser cutting) where velocity smoothness dominates — FERRUM is the correct operating point.
+
+For **absolute-positioning-critical applications** (pick-and-place, assembly) where position accuracy dominates — a lower velocity weight is appropriate, and FERRUM's framework can derive that weight too.
+
+The choice is not intuition. It is derivable.

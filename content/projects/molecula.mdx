@@ -1,39 +1,57 @@
 export const metadata = {
   title: 'MOLECULA',
-  type: 'RESEARCH',
-  description: 'An LTV-MPC architecture for autonomous vehicle ride comfort optimization. The cost function weights are derived from the Glue Program — not hand-tuned.',
-  impact: 'The math becomes the engineering. Abstract theory → control architecture → AV product.',
-  stack: ['LTV-MPC', 'Control Theory', 'Phase Dynamics', 'Python'],
+  type: 'SYSTEM',
+  description: 'An LTV-MPC architecture for autonomous vehicle ride comfort optimization. The cost function weights are derived from a proprietary theoretical framework — not hand-tuned.',
+  impact: 'Theory-derived controller weights for AV ride comfort. The math becomes the engineering.',
+  stack: ['LTV-MPC', 'Control Theory', 'Python'],
   status: 'Actively seeking seed funding and academic collaboration',
 }
 
 ## The Problem
 
-Ride comfort in autonomous vehicles is a control problem: the MPC controller must balance trajectory tracking, safety, and passenger comfort simultaneously. The standard approach is to hand-tune the cost function weights — a process with no theoretical justification that restarts every time vehicle dynamics change.
+Ride comfort in autonomous vehicles is a control problem: the MPC controller must balance trajectory tracking, safety, and passenger comfort simultaneously. The standard approach is to hand-tune the cost function weights — a tedious, unprincipled process that produces parameters with no theoretical justification. Every time vehicle dynamics change, the tuning starts over.
 
-## What It Does
+The question: can the cost function weights be derived from theory rather than adjusted by hand?
 
-MOLECULA is an LTV-MPC architecture where the cost function weights are derived from the Glue Program's crossover law. The connection is not metaphorical — there is a formal derivation chain from the universal constant ξ = ½ to a specific weight schedule that governs how the controller prioritizes competing objectives as driving conditions change.
+## What MOLECULA Does
 
-The weight schedule is not static. It evolves with driving conditions, following the same saturation dynamics that the Glue Program proves are universal for oscillatory systems under detailed balance.
+MOLECULA is an LTV-MPC architecture where the cost function weights are derived from a proprietary theoretical framework. The derivation is not empirical — it proves that a specific weight schedule follows from the mathematical structure of the comfort-tracking trade-off.
+
+The weight schedule is not static. It adapts to driving conditions in real time, shifting between competing objectives (comfort vs. tracking vs. safety) as the regime changes. The schedule is not learned from data or tuned by simulation sweeps — it is a direct consequence of the underlying theory.
+
+The method is not public. The architecture is designed for licensing or co-development.
 
 ## Why This Matters
 
-This is a theory-to-product pipeline:
+Hand-tuned MPC weights have three problems:
 
-1. **The Glue Program** proves a universal constant governing oscillatory phase dynamics
-2. **MOLECULA** turns that constant into a principled weight schedule for an MPC controller
-3. **The AV product** uses that controller for ride comfort optimization
+**No justification.** Why this number and not another? Tuned weights answer "what works" but never "why."
 
-The weights are not approximations of the theory. They are direct consequences of it. The derivation is in the paper.
+**No optimality proof.** You cannot prove a tuned weight is optimal — only that it passed your test suite.
+
+**No transferability.** Change the vehicle, change the conditions, start over. Tuned weights are bound to the system they were tuned on.
+
+MOLECULA solves all three. The weights are derived, provably optimal under stated assumptions, and the derivation generalizes across vehicle platforms because it depends on the mathematical structure of the problem, not on the specific hardware.
+
+## Architecture
+
+**LTV-MPC** — Linear Time-Varying Model Predictive Control with a principled weight schedule governing the cost function across driving regimes.
+
+**Regime-adaptive weights** — the controller does not use fixed weights. The weight schedule evolves with driving conditions, following a trajectory prescribed by the theory.
+
+**Comfort-tracking-safety trade-off** — the three competing objectives are balanced by the derived schedule, not by an engineer's judgment call.
 
 ## Current Status
 
 Actively pursuing two tracks:
 
 - **Seed funding** for prototype development and simulation validation
-- **Academic collaboration** with Prof. Angela Schoellig at TUM (Technical University of Munich)
+- **Academic collaboration** with Prof. Angela Schoellig at TUM (Technical University of Munich) on control-theoretic validation
 
-## Shared Derivation Chain
+## What We're Looking For
 
-MOLECULA and FERRUM apply the identical mathematical derivation to different physical systems. In both cases, the Glue Program's constant ξ = ½ uniquely determines the MPC weight ratio. The universality is not claimed — it is demonstrated across domains.
+MOLECULA is positioned for a seed-stage venture or a research partnership. The theoretical foundation is complete. The next steps are simulation validation on realistic vehicle models and eventually hardware deployment.
+
+If you work in autonomous vehicles, robotics, or applied control theory — this is a conversation worth having.
+
+**Contact: omar@nosleepsystems.com**
