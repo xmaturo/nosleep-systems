@@ -2,7 +2,7 @@ export default function EthosStrip() {
   return (
     <section className="px-6 py-8">
       <div className="max-w-7xl mx-auto border-[3px] border-rust hatch-03 px-6 py-5 flex flex-col md:flex-row items-start md:items-center gap-4">
-        <span className="font-display text-[9px] uppercase bg-rust text-void px-3 py-1 rounded-full whitespace-nowrap tracking-[1px]">
+        <span className="font-display text-[9px] uppercase bg-rust text-void px-3 py-1 whitespace-nowrap tracking-[1px]">
           OPEN SOURCE STACK
         </span>
         <p className="font-mono text-[10px] text-cream leading-relaxed">

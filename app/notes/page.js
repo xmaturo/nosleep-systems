@@ -1,12 +1,9 @@
 import Link from 'next/link';
+import registry from './registry';
 
 export const metadata = {
   title: 'Notes — No Sleep Systems',
   description: 'Thought archive by Omar Medina. Essays on engineering, research, and systems thinking.',
-}
-
-const registry = {
-  'canon-law': () => import('@/content/notes/canon-law.mdx'),
 }
 
 export default async function NotesPage() {
