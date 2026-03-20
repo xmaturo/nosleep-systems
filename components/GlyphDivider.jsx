@@ -3,6 +3,7 @@ export default function GlyphDivider() {
     <div className="flex items-center justify-center gap-8 py-8">
       {/* Circle with radiating lines */}
       <svg
+        aria-hidden="true"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -18,6 +19,7 @@ export default function GlyphDivider() {
 
       {/* Rotated diamond */}
       <svg
+        aria-hidden="true"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -38,6 +40,7 @@ export default function GlyphDivider() {
 
       {/* Bullseye */}
       <svg
+        aria-hidden="true"
         width="24"
         height="24"
         viewBox="0 0 24 24"

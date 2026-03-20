@@ -22,7 +22,7 @@ const entries = [
     tagColor: 'bg-ember',
     name: 'VIMANA',
     nameColor: 'text-gold',
-    hook: 'Full engineering package for an adaptive metasurface vehicle. 24 modules. 10 volumes. The propulsion mechanism is an open problem.',
+    hook: 'Full engineering package for an adaptive metasurface vehicle. 24 modules. 10 volumes. 26 pages. The propulsion mechanism is an open problem.',
     vitalBorder: 'border-l-gold',
     vitalNumberColor: 'text-gold',
     hoverBorder: 'hover:border-gold',
