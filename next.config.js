@@ -1,6 +1,8 @@
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
-  options: {},
+  options: {
+    remarkPlugins: [require('remark-gfm').default],
+  },
 });
 
 /** @type {import('next').NextConfig} */
