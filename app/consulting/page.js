@@ -1,3 +1,5 @@
+import AuditForm from '../../components/AuditForm';
+
 export const metadata = {
   title: 'APEX Dynamics — Structural Dynamics Consulting | No Sleep Systems',
   description:
@@ -5,12 +7,12 @@ export const metadata = {
 };
 
 const comparisonRows = [
-  ['Revenue growth rate', 'Whether the system can structurally sustain it'],
-  ['User retention', 'Whether retention is structural or compensated'],
-  ['Activation rate', 'Whether activations translate into structural engagement'],
-  ['Churn rate', 'Whether churn is a symptom of structural decay or surface friction'],
-  ['Operational efficiency', 'Whether efficiency gains cost structural flexibility'],
-  ['Dashboard KPIs', 'Whether the organization can still determine its own trajectory'],
+  ['Revenue growth rate', 'Whether the structure producing that growth is intact or being consumed'],
+  ['User retention', 'Whether retention is structural or compensated by operational heroics'],
+  ['Activation rate', 'Whether activations create structural engagement or vanish after onboarding'],
+  ['Churn rate', 'Whether churn signals structural decay or recoverable surface friction'],
+  ['Operational efficiency', 'Whether efficiency gains are strengthening or hollowing the system'],
+  ['Dashboard KPIs', 'Whether the organization is governing its trajectory or being governed by it'],
 ];
 
 const regimes = [
@@ -45,25 +47,25 @@ const phases = [
     number: '01',
     name: 'DATA AUDIT',
     description:
-      'Review available data against APEX requirements. Determine what is measurable. If data infrastructure remediation is required, scope it separately.',
+      'Evaluate whether your data supports phase-resolved cohort analysis. Review event log completeness across product, market, and organizational event classes. Determine what is measurable now and what requires remediation before diagnostic work can begin.',
   },
   {
     number: '02',
     name: 'STRUCTURAL MAPPING',
     description:
-      'Execute the measurement protocol against operational data. Estimate structural parameters with robustness validation.',
+      'Execute the full measurement protocol against your operational data. Estimate perturbation exposure, reorganization capacity, and the competition ratio between them. Validate all estimates against a four-test robustness battery — if a test fails, that failure is itself a structural finding.',
   },
   {
     number: '03',
     name: 'DIAGNOSTIC REPORT',
     description:
-      'Deliver the Structural Diagnostic Report: regime classification, sovereignty score, intervention leverage, and priority recommendation.',
+      'Deliver the Structural Diagnostic Report: regime classification, sovereignty score, intervention leverage at your current position on the curve, and priority recommendation derived from which event classes drive your exposure versus your displacement.',
   },
   {
     number: '04',
     name: 'STRATEGIC SESSION',
     description:
-      'Walk through the report with leadership. Translate structural findings into organizational context. Define what to monitor going forward.',
+      'Walk through the report with leadership. Translate regime findings into your organizational context — what the classification means for your specific decisions, what to monitor going forward, and at what cadence to re-evaluate structural position.',
   },
 ];
 
@@ -90,6 +92,9 @@ export default function ConsultingPage() {
         <p className="font-mono text-cool-cream/50 text-sm mt-3">
           No Sleep Systems
         </p>
+        <p className="font-mono text-cool-cream/50 text-sm mt-4">
+          For SaaS companies navigating growth, retention pressure, or organizational transition.
+        </p>
       </section>
 
       {/* Section 2: The Problem */}
@@ -105,8 +110,15 @@ export default function ConsultingPage() {
             structure that makes those metrics possible. By the time the
             dashboards move, the structural reserves have already been consumed.
           </p>
-          <p className="font-mono text-cool-cream/80 text-base leading-relaxed mt-6">
-            Conventional analytics was not designed to see this. APEX was.
+          <div className="mt-12 border-l-[3px] border-brass/40 pl-6 py-2">
+            <p className="font-mono text-cool-cream/80 text-base leading-relaxed">
+              A Series B SaaS company. 140% net revenue retention. Three consecutive
+              quarters beating plan. Eighteen months later, a restructuring. The
+              retention was real. The structural capacity to maintain it was not.
+            </p>
+          </div>
+          <p className="font-mono text-brass text-sm mt-4">
+            APEX was designed to see that gap before the metrics moved.
           </p>
         </div>
       </section>
@@ -175,31 +187,42 @@ export default function ConsultingPage() {
           <h2 className="font-display text-2xl md:text-3xl text-cool-cream uppercase mb-6">
             Structural Sovereignty
           </h2>
-          <p className="font-mono text-cool-cream/80 text-base leading-relaxed mb-10">
-            One score. Derived from a proven mathematical framework — not fitted
-            from data.
-          </p>
-          <div className="border-[3px] border-brass bg-wine/20 p-8 text-center mb-10">
-            <p className="font-mono text-2xl md:text-3xl text-brass">
-              S = Δ̃max · tanh(2R)
-            </p>
-          </div>
-          <p className="font-mono text-cool-cream/80 text-base leading-relaxed">
-            S measures the degree to which the organization governs its own
-            evolution, rather than being governed by its environment or internal
+          <p className="font-mono text-cool-cream/80 text-base leading-relaxed mb-8">
+            One score that measures whether the organization governs its own
+            evolution — or is being governed by its environment and internal
             structural decay.
           </p>
-          <p className="font-mono text-cool-cream/80 text-base leading-relaxed mt-6">
-            R is the ratio of reorganization capacity to perturbation pressure.
-            Δmax is the structural decision space — the range of outcomes the
-            organization can still achieve.
+          <p className="font-mono text-cool-cream/80 text-base leading-relaxed">
+            The sovereignty score S captures two things simultaneously: how much
+            reorganization capacity the system has relative to the perturbation
+            pressure it faces, and how large the structural decision space
+            remains — the range of outcomes the organization can still achieve.
           </p>
           <p className="font-mono text-cool-cream/80 text-base leading-relaxed mt-6">
-            The functional form is nonlinear. Improvements in structural
-            capacity produce diminishing returns once the system is already
-            robust. This is not an assumption — it is a mathematical consequence
-            of the underlying framework.
+            S is derived from a proven mathematical framework. It is not fitted
+            from data, not calibrated per client, and not a heuristic. The
+            functional form is nonlinear — improvements in structural capacity
+            produce diminishing returns once the system is already robust. This
+            is a mathematical consequence of the framework, not an assumption.
           </p>
+          <details className="mt-8 border-[3px] border-brass/30 bg-wine/20">
+            <summary className="cursor-pointer px-6 py-4 font-mono text-sm text-brass hover:text-cool-cream transition-colors">
+              View the mathematical formulation
+            </summary>
+            <div className="px-6 pb-6 pt-2">
+              <p className="font-mono text-2xl md:text-3xl text-brass text-center py-6">
+                S = Δ̃<sub>max</sub> · tanh(2R)
+              </p>
+              <p className="font-mono text-sm text-cool-cream/70 leading-relaxed mt-4">
+                R is the competition ratio — reorganization capacity divided by
+                perturbation pressure. Δ<sub>max</sub> is the structural decision
+                space, normalized against the system&apos;s historical range. The tanh
+                saturation reflects that even highly organized systems have structural
+                limits. The constant governing the crossover is exact and universal,
+                derived from time-reversal symmetry — not estimated.
+              </p>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -254,20 +277,52 @@ export default function ConsultingPage() {
             the organization does with that information is a strategic decision
             that belongs to its leadership.
           </p>
+          <div className="mt-10">
+            <h3 className="font-display text-lg text-brass/70 uppercase mb-6">
+              What APEX Does Not Do
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {['Build dashboards', 'Optimize ad spend', 'Forecast revenue', 'Replace your analytics stack', 'Tell you what product to build', 'Automate strategic decisions'].map((item) => (
+                <span key={item} className="border border-brass/20 px-4 py-2 text-sm font-mono text-cool-cream/60">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Section 8: CTA */}
-      <section className="py-28 text-center px-6">
-        <h2 className="font-display text-3xl md:text-5xl text-brass uppercase">
-          Let&apos;s Find Out.
-        </h2>
-        <a
-          href="mailto:omar@nosleepsystems.com"
-          className="inline-block font-mono text-cool-cream border-b-2 border-brass mt-8 hover:text-brass transition-colors duration-150"
-        >
-          omar@nosleepsystems.com
-        </a>
+      {/* Section 8: Who Delivers This */}
+      <section className="py-16 px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="font-display text-lg text-brass uppercase">
+            Omar Medina
+          </p>
+          <p className="font-mono text-cool-cream/80 text-sm leading-relaxed mt-6">
+            Systems engineer and applied mathematician. The structural framework
+            behind APEX was developed from original research in oscillatory
+            dynamics, validated computationally across thousands of synthetic
+            systems, and translated into a measurement protocol for
+            organizational diagnostics. The same person who built the theory
+            built the engine.
+          </p>
+          <p className="font-mono text-cool-cream/40 text-xs mt-6">
+            No Sleep Systems · nosleepsystems.com
+          </p>
+        </div>
+      </section>
+
+      {/* Section 9: CTA — Intake Form */}
+      <section className="py-28 px-6">
+        <div className="max-w-lg mx-auto text-center">
+          <h2 className="font-display text-3xl md:text-4xl text-brass uppercase">
+            Request a Structural Audit
+          </h2>
+          <p className="font-mono text-cool-cream/50 text-sm mt-4 mb-12">
+            Tell me about your company. I&apos;ll tell you if APEX can help.
+          </p>
+          <AuditForm />
+        </div>
       </section>
     </main>
   );
