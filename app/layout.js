@@ -30,6 +30,11 @@ export const metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'No Sleep Systems — Omar Medina',
+    description: 'Systems engineer and applied mathematician. Six projects, one person, zero venture capital.',
+  },
 };
 
 export default function RootLayout({ children }) {

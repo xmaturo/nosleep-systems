@@ -100,7 +100,7 @@ export default async function QuackeryDetailPage({ params }) {
             </Link>
             <Link
               href="/"
-              className="font-mono text-xs text-rust hover:text-gold lowercase tracking-wider transition-colors duration-200"
+              className="font-display text-sm text-rust hover:text-gold lowercase tracking-wider transition-colors duration-200"
             >
               back to the work that ships →
             </Link>

@@ -43,6 +43,7 @@ export default function Navbar() {
           onClick={() => setOpen(!open)}
           className="md:hidden flex flex-col gap-1.5 p-2"
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           <span className={`block w-5 h-[3px] bg-gold transition-transform duration-200 ${open ? 'rotate-45 translate-y-[9px]' : ''}`} />
           <span className={`block w-5 h-[3px] bg-gold transition-opacity duration-200 ${open ? 'opacity-0' : ''}`} />
