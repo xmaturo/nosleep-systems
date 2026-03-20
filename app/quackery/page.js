@@ -131,43 +131,43 @@ function QuackGlyphs({ count = 5 }) {
 /* ---- Entry Component ---- */
 function Entry({ entry }) {
   return (
-    <article
-      className={`relative border-[4px] border-rust p-8 md:p-12 hatch-quack bg-wine/25 transition-all duration-150 corner-mark-quack ${entry.hoverBorder} hover:translate-x-[-3px] hover:translate-y-[-3px] hover:rotate-[-0.3deg]`}
-      style={{
-        '--corner-color-top': entry.cornerTopVar,
-        '--corner-color-bottom': entry.cornerBottomVar,
-      }}
-    >
-      {/* Tag */}
-      <span className={`inline-block font-display text-[0.65rem] uppercase tracking-[0.15em] text-void ${entry.tagColor} px-3 py-1 rounded-[40px] mb-4`}>
-        {entry.tag}
-      </span>
+    <Link href={`/quackery/${entry.id}`} className="block">
+      <article
+        className={`relative border-[4px] border-rust p-8 md:p-12 hatch-quack bg-wine/25 transition-all duration-150 corner-mark-quack ${entry.hoverBorder} hover:translate-x-[-3px] hover:translate-y-[-3px] hover:rotate-[-0.3deg]`}
+        style={{
+          '--corner-color-top': entry.cornerTopVar,
+          '--corner-color-bottom': entry.cornerBottomVar,
+        }}
+      >
+        {/* Tag */}
+        <span className={`inline-block font-display text-[0.65rem] uppercase tracking-[0.15em] text-void ${entry.tagColor} px-3 py-1 rounded-[40px] mb-4`}>
+          {entry.tag}
+        </span>
 
-      {/* Name */}
-      <Link href={`/quackery/${entry.id}`}>
+        {/* Name */}
         <h2 className={`font-display text-[clamp(2.5rem,6vw,4.5rem)] uppercase leading-none mb-4 tracking-tight ${entry.nameColor} hover:opacity-80 transition-opacity duration-150`}>
           {entry.name}
         </h2>
-      </Link>
 
-      {/* Hook */}
-      <p className="font-mono text-[clamp(0.9rem,1.8vw,1.1rem)] text-cream/90 leading-relaxed mb-8 max-w-[700px]">
-        {entry.hook}
-      </p>
+        {/* Hook */}
+        <p className="font-mono text-[clamp(0.9rem,1.8vw,1.1rem)] text-cream/90 leading-relaxed mb-8 max-w-[700px]">
+          {entry.hook}
+        </p>
 
-      {/* Divider */}
-      <div className="entry-divider-line w-full mb-6" />
+        {/* Divider */}
+        <div className="entry-divider-line w-full mb-6" />
 
-      {/* Vitals */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {entry.vitals.map((v, i) => (
-          <div key={i} className={`pl-4 border-l-[3px] ${entry.vitalBorder}`}>
-            <div className={`font-display text-xl ${entry.vitalNumberColor}`}>{v.number}</div>
-            <div className="font-mono text-[0.7rem] text-cream/60 uppercase tracking-wider mt-0.5">{v.label}</div>
-          </div>
-        ))}
-      </div>
-    </article>
+        {/* Vitals */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {entry.vitals.map((v, i) => (
+            <div key={i} className={`pl-4 border-l-[3px] ${entry.vitalBorder}`}>
+              <div className={`font-display text-xl ${entry.vitalNumberColor}`}>{v.number}</div>
+              <div className="font-mono text-[0.7rem] text-cream/60 uppercase tracking-wider mt-0.5">{v.label}</div>
+            </div>
+          ))}
+        </div>
+      </article>
+    </Link>
   );
 }
 
