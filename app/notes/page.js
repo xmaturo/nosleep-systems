@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
   title: 'Notes — No Sleep Systems',
   description: 'Thought archive by Omar Medina. Essays on engineering, research, and systems thinking.',
@@ -31,7 +33,7 @@ export default async function NotesPage() {
 
           <div className="flex flex-col gap-[3px]">
             {entries.map((note, i) => (
-              <a
+              <Link
                 key={note.slug}
                 href={`/notes/${note.slug}`}
                 className={`relative corner-mark ${i % 2 === 0 ? 'corner-mark-gold' : 'corner-mark-ember'} block bg-wine p-6 border-[3px] border-transparent hover:border-ember hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all duration-150 ${i % 2 === 0 ? 'hatch-45' : 'hatch-neg45'}`}
@@ -60,7 +62,7 @@ export default async function NotesPage() {
                 <p className="font-mono text-[9px] text-ember uppercase mt-3">
                   Read →
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

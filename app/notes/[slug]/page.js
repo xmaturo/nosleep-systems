@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 
 const registry = {
   'canon-law': () => import('@/content/notes/canon-law.mdx'),
@@ -60,9 +61,9 @@ export default async function NotePage({ params }) {
 
         {/* Back link */}
         <div className="border-t-[3px] border-wine mt-16 pt-8">
-          <a href="/notes" className="font-display text-sm text-ember hover:text-gold uppercase tracking-wide transition-colors duration-200">
+          <Link href="/notes" className="font-display text-sm text-ember hover:text-gold uppercase tracking-wide transition-colors duration-200">
             ← All Notes
-          </a>
+          </Link>
         </div>
       </div>
     </main>

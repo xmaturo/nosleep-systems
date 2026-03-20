@@ -14,8 +14,8 @@ module.exports = {
         violet: '#7b2ff7',
       },
       fontFamily: {
-        display: ['"Dela Gothic One"', 'sans-serif'],
-        mono: ['"Space Mono"', 'monospace'],
+        display: ['var(--font-display)', 'sans-serif'],
+        mono: ['var(--font-body)', 'monospace'],
       },
       animation: {
         drift: 'drift 14s ease-in-out infinite',

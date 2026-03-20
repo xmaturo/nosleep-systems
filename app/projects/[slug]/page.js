@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 
 // Registry: maps slug to dynamic import
 // Each MDX file exports: metadata = { title, type, description, impact, stack, status }
@@ -81,9 +82,9 @@ export default async function ProjectPage({ params }) {
 
         {/* Back link */}
         <div className="border-t-[3px] border-wine mt-16 pt-8">
-          <a href="/projects" className="font-display text-sm text-ember hover:text-gold uppercase tracking-wide transition-colors duration-200">
+          <Link href="/projects" className="font-display text-sm text-ember hover:text-gold uppercase tracking-wide transition-colors duration-200">
             ← All Projects
-          </a>
+          </Link>
         </div>
       </div>
     </main>
