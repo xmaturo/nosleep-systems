@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="relative border-t-[3px] border-ember overflow-hidden">
+    <footer className="relative border-t-[3px] border-ember overflow-x-hidden overflow-y-visible">
       {/* Giant background text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span className="font-display text-[120px] md:text-[120px] text-wine opacity-[0.06] uppercase whitespace-nowrap">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <span className="font-display text-[60px] md:text-[120px] text-wine opacity-[0.06] uppercase whitespace-nowrap">
           NOSLEEP
         </span>
       </div>
