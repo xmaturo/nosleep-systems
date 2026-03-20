@@ -10,7 +10,7 @@ export default function ProjectCard({ project, index }) {
       href={`/projects/${project.slug}`}
       className={`relative corner-mark ${cornerClass} block bg-wine p-5 border-[3px] border-transparent hover:border-ember hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all duration-150`}
     >
-      <span className={`inline-block font-display text-[8px] uppercase tracking-[1px] px-2 py-0.5 border-[2px] ${tagBorder} text-cream mb-3`}>
+      <span className={`inline-block font-display text-[8px] uppercase tracking-[1px] px-2 py-0.5 border-[3px] ${tagBorder} text-cream mb-3`}>
         {project.tag}
       </span>
 

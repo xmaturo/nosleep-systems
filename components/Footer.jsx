@@ -1,9 +1,3 @@
-const socialLinks = [
-  { label: 'Email', href: 'mailto:omar@nosleepsystems.com' },
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-];
-
 export default function Footer() {
   return (
     <footer className="relative border-t-[3px] border-ember overflow-hidden">
@@ -19,19 +13,12 @@ export default function Footer() {
           No Sleep Systems · GTA, Canada · omar@nosleepsystems.com
         </p>
 
-        <div className="flex items-center gap-3">
-          {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="font-mono text-[10px] text-gold px-3 py-1 border-[2px] border-wine rounded-[40px] hover:bg-gold hover:text-void transition-all duration-150"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <a
+          href="mailto:omar@nosleepsystems.com"
+          className="font-mono text-[10px] text-gold px-3 py-1 border-[3px] border-wine rounded-[40px] hover:bg-gold hover:text-void transition-all duration-150"
+        >
+          Email
+        </a>
       </div>
     </footer>
   );

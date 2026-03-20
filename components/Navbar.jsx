@@ -26,7 +26,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-mono text-[10px] uppercase tracking-[2px] text-cream px-4 py-1.5 rounded-[40px] border-[2.5px] border-wine hover:border-ember hover:text-gold transition-all duration-150"
+              className="font-mono text-[10px] uppercase tracking-[2px] text-cream px-4 py-1.5 rounded-[40px] border-[3px] border-wine hover:border-ember hover:text-gold transition-all duration-150"
             >
               {link.label}
             </Link>
@@ -59,7 +59,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="font-mono text-[10px] uppercase tracking-[2px] text-cream px-4 py-2 rounded-[40px] border-[2.5px] border-wine hover:border-ember transition-all duration-150"
+              className="font-mono text-[10px] uppercase tracking-[2px] text-cream px-4 py-2 rounded-[40px] border-[3px] border-wine hover:border-ember transition-all duration-150"
             >
               {link.label}
             </Link>

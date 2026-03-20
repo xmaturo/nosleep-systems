@@ -18,7 +18,7 @@ const roles = [
 export default function HireBlock() {
   return (
     <section className="px-6 py-12">
-      <div className="max-w-7xl mx-auto border-[3px] animate-pulse-border hatch-03 p-8 md:p-12">
+      <div className="max-w-7xl mx-auto border-[3px] border-gold animate-pulse-border hatch-03 p-8 md:p-12">
         <h2 className="font-display text-[22px] md:text-[26px] uppercase leading-tight mb-6">
           THIS IS WHAT I DO WITH{' '}
           <span className="text-gold">OPEN-SOURCE TOOLS AND NO FUNDING</span>.{' '}
@@ -35,7 +35,7 @@ export default function HireBlock() {
           {roles.map((role) => (
             <div
               key={role.title}
-              className="bg-wine/40 border-[2px] border-wine hover:border-ember p-5 transition-all duration-150"
+              className="bg-wine/40 border-[3px] border-wine hover:border-ember p-5 transition-all duration-150"
             >
               <h3 className="font-display text-[11px] text-gold uppercase mb-3">
                 {role.title}
@@ -59,7 +59,7 @@ export default function HireBlock() {
             href="/cv"
             className="inline-block font-mono text-[10px] uppercase tracking-[2px] text-gold px-6 py-3 border-[3px] border-wine hover:border-gold transition-all duration-150 text-center"
           >
-            DOWNLOAD CV
+            VIEW CV
           </a>
         </div>
 

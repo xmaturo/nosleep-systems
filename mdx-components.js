@@ -32,6 +32,24 @@ export function useMDXComponents(components) {
     blockquote: ({ children }) => (
       <blockquote className="border-l-[3px] border-gold pl-4 mb-4 italic">{children}</blockquote>
     ),
+    table: ({ children }) => (
+      <div className="overflow-x-auto mb-6">
+        <table className="font-mono text-[10px] text-cream/70 border-[3px] border-wine w-full">
+          {children}
+        </table>
+      </div>
+    ),
+    thead: ({ children }) => <thead>{children}</thead>,
+    tbody: ({ children }) => <tbody>{children}</tbody>,
+    tr: ({ children }) => <tr className="border-b border-wine/50">{children}</tr>,
+    th: ({ children }) => (
+      <th className="border border-wine px-3 py-1.5 text-gold text-left font-display">
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td className="border border-wine px-3 py-1.5">{children}</td>
+    ),
     ...components,
   };
 }
