@@ -21,7 +21,6 @@ module.exports = {
         drift: 'drift 14s ease-in-out infinite',
         'drift-slow': 'drift 22s ease-in-out infinite',
         marquee: 'marquee 25s linear infinite',
-        'marquee-reverse': 'marquee-reverse 30s linear infinite',
         wiggle: 'wiggle 8s ease-in-out infinite',
         radiate: 'radiate 3s ease-in-out infinite',
         'pulse-border': 'pulse-border 4s ease-in-out infinite',
@@ -43,10 +42,6 @@ module.exports = {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
-        },
-        'marquee-reverse': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
         },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-0.3deg)' },

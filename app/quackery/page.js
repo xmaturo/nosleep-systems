@@ -160,7 +160,7 @@ function Entry({ entry }) {
         {/* Vitals */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {entry.vitals.map((v, i) => (
-            <div key={i} className={`pl-4 border-l-[3px] ${entry.vitalBorder}`}>
+            <div key={i} className={`pl-4 border-l-[4px] ${entry.vitalBorder}`}>
               <div className={`font-display text-xl ${entry.vitalNumberColor}`}>{v.number}</div>
               <div className="font-mono text-[0.7rem] text-cream/60 uppercase tracking-wider mt-0.5">{v.label}</div>
             </div>
@@ -206,7 +206,7 @@ export default function QuackeryPage() {
           <p className="font-mono text-[clamp(1rem,2.5vw,1.5rem)] text-ember mt-6 lowercase tracking-wider">
             welcome to the rabbit hole
           </p>
-          <div className="absolute bottom-8 left-1/2 animate-scroll-hint font-mono text-xs text-rust/60 lowercase tracking-widest">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-scroll-hint font-mono text-xs text-rust/60 lowercase tracking-widest">
             ↓ scroll ↓
           </div>
         </section>

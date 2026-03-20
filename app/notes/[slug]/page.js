@@ -1,9 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-
-const registry = {
-  'canon-law': () => import('@/content/notes/canon-law.mdx'),
-}
+import registry from '../registry'
 
 export function generateStaticParams() {
   return Object.keys(registry).map((slug) => ({ slug }))
