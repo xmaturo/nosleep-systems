@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative pt-28 pb-16 px-6 overflow-hidden">
+    <section className="relative pt-28 pb-16 px-6 overflow-x-hidden overflow-y-visible">
       {/* Floating blobs */}
       <div className="absolute top-10 left-[10%] w-[300px] h-[300px] rounded-full bg-ember/[0.08] blur-[80px] animate-drift pointer-events-none" />
       <div className="absolute top-40 right-[5%] w-[250px] h-[250px] rounded-full bg-rust/[0.1] blur-[80px] animate-drift-slow pointer-events-none" />

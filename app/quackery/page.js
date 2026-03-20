@@ -193,7 +193,7 @@ export default function QuackeryPage() {
 
         {/* ===== THE GATE ===== */}
         <section className="min-h-screen flex flex-col justify-center px-4 md:px-8 relative overflow-hidden">
-          <h1 className="font-display leading-[0.85] tracking-tight -ml-[0.05em]" style={{ fontSize: 'clamp(6rem, 18vw, 16rem)' }}>
+          <h1 className="font-display leading-[0.85] tracking-tight md:-ml-[0.05em]" style={{ fontSize: 'clamp(2.2rem, 11vw, 16rem)' }}>
             <span className="text-gold">Q</span>
             <span className="text-cream">U</span>
             <span className="text-ember">A</span>
