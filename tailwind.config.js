@@ -12,6 +12,9 @@ module.exports = {
         cream: '#f5f0e8',
         magenta: '#e83e8c',
         violet: '#7b2ff7',
+        brass: '#c9a84c',
+        'slate-void': '#1e1445',
+        'cool-cream': '#eae7df',
       },
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
