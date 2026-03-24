@@ -60,6 +60,27 @@ body {
   color: rgba(243, 116, 43, 0.15);
 }
 
+/* Whitepaper download link */
+.whitepaper-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 3px solid #fed172;
+  color: #fed172;
+  font-family: var(--font-space-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.whitepaper-link:hover {
+  background: #fed172;
+  color: #231650;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
