@@ -41,6 +41,34 @@ MOLECULA solves all three. The weights are derived, provably optimal under state
 
 **Comfort-tracking-safety trade-off** — the three competing objectives are balanced by the derived schedule, not by an engineer's judgment call.
 
+## Simulation Results
+
+Baseline MPC vs. MOLECULA on a mixed urban-highway driving cycle. All metrics evaluated under identical trajectory and constraint conditions.
+
+### Acceleration Comfort (ISO 2631)
+
+![Weighted RMS acceleration comparison between Baseline and MOLECULA across a mixed driving cycle, evaluated against ISO 2631 comfort bands](/projects/molecula/acceleration_comfort.png)
+
+Weighted RMS acceleration reduced by 83.4% — from 0.264 to 0.044 m/s². Baseline repeatedly enters the "A little uncomfortable" and "Fairly uncomfortable" ISO bands. MOLECULA stays in "Not uncomfortable" throughout the entire cycle.
+
+### Jerk Profile
+
+![Longitudinal and lateral jerk comparison between Baseline and MOLECULA](/projects/molecula/jerk_comparison.png)
+
+Longitudinal jerk RMS reduced by 31.3%. Lateral jerk RMS reduced by 92.3%. The lateral result is the more significant one — lateral jerk is the primary driver of passenger discomfort in lane changes and curves, and it is nearly eliminated.
+
+### Suspension Transfer Function
+
+![Frequency-domain suspension transfer function comparison between Baseline and MOLECULA, with ISO target band](/projects/molecula/suspension_transfer.png)
+
+MOLECULA achieves steeper roll-off in the 4–8 Hz range where human vibration sensitivity peaks. The transfer function crosses the ISO target threshold earlier and maintains greater attenuation at higher frequencies.
+
+### Vibration Dose Value (VDV)
+
+![Cumulative VDV comparison between Baseline and MOLECULA over the full driving cycle](/projects/molecula/vdv_accumulation.png)
+
+VDV reduced by 77.3% — from 0.269 to 0.061 m/s¹·⁷⁵. VDV is the ISO 2631 cumulative metric that accounts for both magnitude and duration of vibration exposure. This is the bottom-line number for ride comfort assessment.
+
 ## Current Status
 
 Actively pursuing two tracks:
