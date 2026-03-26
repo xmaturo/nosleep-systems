@@ -43,6 +43,15 @@ MOLECULA solves all three. The weights are derived, provably optimal under state
 
 ## Simulation Results
 
+### Simulation Setup
+
+- Vehicle model: 8-state kinematic/dynamic model (position, heading, velocity, acceleration, jerk — longitudinal and lateral)
+- Scenario: 30-second mixed urban-highway cycle (acceleration, curves, braking, lane changes)
+- Baseline: trajectory-tracking controller without comfort optimization, under identical constraints
+- Metrics: ISO 2631-1 weighted RMS acceleration, jerk RMS (longitudinal + lateral), Vibration Dose Value
+- Conditions held constant: reference trajectory, state/control constraints, road disturbance profile (ISO class-C)
+- Objective: compare ride-comfort performance under matched operating conditions
+
 Baseline MPC vs. MOLECULA on a mixed urban-highway driving cycle. All metrics evaluated under identical trajectory and constraint conditions.
 
 ### Acceleration Comfort (ISO 2631)
@@ -61,7 +70,7 @@ Longitudinal jerk RMS reduced by 31.3%. Lateral jerk RMS reduced by 92.3%. The l
 
 ![Frequency-domain suspension transfer function comparison between Baseline and MOLECULA, with ISO target band](/projects/molecula/suspension_transfer.png)
 
-MOLECULA achieves steeper roll-off in the 4–8 Hz range where human vibration sensitivity peaks. The transfer function crosses the ISO target threshold earlier and maintains greater attenuation at higher frequencies.
+Active suspension achieves |H(f)| = 0.19 in the 0.5–2 Hz vestibular band, well below the 0.25 target. The shaded region marks the frequency range where motion sickness sensitivity is highest.
 
 ### Vibration Dose Value (VDV)
 
