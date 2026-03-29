@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import NuevasCuriousSection from '@/components/quackery/NuevasCuriousSection';
 
 const registry = {
   'vimana':    () => import('@/content/quackery/vimana.mdx'),
@@ -89,6 +90,8 @@ export default async function QuackeryDetailPage({ params }) {
           <article className="prose-none">
             <Content />
           </article>
+
+          {params.slug === 'nuevas' && <NuevasCuriousSection />}
 
           {/* Back links */}
           <div className="border-t-[4px] border-wine mt-16 pt-8 flex justify-between items-center">
